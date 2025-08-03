@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw - CryptoPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            padding-bottom: 80px;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .back-button {
+            font-size: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+            color: #87ceeb;
+        }
+        
+        .page-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+        
+        /* Content Styles */
+        .content {
+            padding: 80px 20px 20px;
+        }
+        
+        .withdraw-section {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-title {
+            color: #a0a0a0;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .amount {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-method {
+            flex: 1;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #444;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .payment-method.selected {
+            border-color: #87ceeb;
+            background-color: #3a3a3a;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #444;
+            border: 1px solid #555;
+            color: #e0e0e0;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #87ceeb;
+        }
+        
+        .fee-row, .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #444;
+        }
+        
+        .fee-label, .receipt-label {
+            color: #a0a0a0;
+            font-size: 14px;
+        }
+        
+        .fee-value {
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+        
+        .receipt-value {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .confirm-button {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #87ceeb;
+            color: #1e1e1e;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .confirm-button:hover {
+            background-color: #6cb8d8;
+        }
+        
+        .disclaimer {
+            margin-top: 30px;
+            color: #a0a0a0;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.5;
+        }
+        
+        /* Bottom Menu */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #333;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #87ceeb;
+        }
+        
+        .menu-label {
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="back-button" id="back-button">&#x2039;</div>
+        <div class="page-title">Withdraw</div>
+    </header>
+
+    <!-- Content Section -->
+    <div class="content">
+        <div class="withdraw-section">
+            <div class="section-title">Withdrawal Amount</div>
+            <div class="amount">0.00 USDT</div>
+            
+            <div class="section-title">Payment Method</div>
+            <div class="payment-methods">
+                <div class="payment-method" id="bep20-method">Bep20</div>
+                <div class="payment-method" id="trc20-method">Trc20</div>
+            </div>
+            
+            <input type="text" class="input-field" id="amount-input" placeholder="Enter withdrawal amount (Min: 10.00 USDT)">
+            <input type="text" class="input-field" id="address-input" placeholder="Withdrawal address">
+            <input type="password" class="input-field" id="password-input" placeholder="Password">
+            
+            <div class="fee-row">
+                <div class="fee-label">Handling fee</div>
+                <div class="fee-value">0.00 USDT</div>
+            </div>
+            
+            <div class="receipt-row">
+                <div class="receipt-label">You will receive</div>
+                <div class="receipt-value" id="receipt-amount">0.00 USDT</div>
+            </div>
+            
+            <button class="confirm-button" id="confirm-button">Confirm Withdrawal</button>
+        </div>
+        
+        <div class="disclaimer">
+            Please ensure the withdrawal address matches the selected network. Withdrawals may take up to 24 hours to process.
+        </div>
+    </div>
+
+    <!-- Bottom Menu -->
+    <nav class="bottom-menu">
+        <div class="menu-item" onclick="window.location.href='dashboard.html'">
+            <div class="menu-icon">H</div>
+            <div class="menu-label">Home</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='plans.html'">
+            <div class="menu-icon">P</div>
+            <div class="menu-label">Plans</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='team.html'">
+            <div class="menu-icon">T</div>
+            <div class="menu-label">Team</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='me.html'">
+            <div class="menu-icon">M</div>
+            <div class="menu-label">Me</div>
+        </div>
+    </nav>
+
+    <script>
+        // Back button functionality
+        document.getElementById('back-button').addEventListener('click', function() {
+            window.location.href = 'dashboard.html';
+        });
+
+        // Payment method selection
+        const bep20Method = document.getElementById('bep20-method');
+        const trc20Method = document.getElementById('trc20-method');
+        const addressInput = document.getElementById('address-input');
+        
+        bep20Method.addEventListener('click', function() {
+            bep20Method.classList.add('selected');
+            trc20Method.classList.remove('selected');
+            addressInput.placeholder = "Bep20 withdrawal address";
+        });
+        
+        trc20Method.addEventListener('click', function() {
+            trc20Method.classList.add('selected');
+            bep20Method.classList.remove('selected');
+            addressInput.placeholder = "Trc20 withdrawal address";
+        });
+        
+        // Default selection
+        bep20Method.click();
+        
+        // Update receipt amount when amount changes
+        const amountInput = document.getElementById('amount-input');
+        const receiptAmount = document.getElementById('receipt-amount');
+        
+        amountInput.addEventListener('input', function() {
+            const amount = amountInput.value || '0.00';
+            receiptAmount.textContent = amount + ' USDT';
+        });
+        
+        // Confirm button functionality
+        document.getElementById('confirm-button').addEventListener('click', function() {
+            const amount = amountInput.value;
+            const address = addressInput.value;
+            const password = document.getElementById('password-input').value;
+            const selectedMethod = bep20Method.classList.contains('selected') ? 'Bep20' : 'Trc20';
+            
+            // Basic validation
+            if (!amount || isNaN(amount)) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            if (parseFloat(amount) < 10) {
+                alert('Minimum withdrawal amount is 10.00 USDT');
+                return;
+            }
+            
+            if (!address) {
+                alert('Please enter a withdrawal address');
+                return;
+            }
+            
+            if (!password) {
+                alert('Please enter your password');
+                return;
+            }
+            
+            // Check password against stored user data
+            const userDatabase = JSON.parse(localStorage.getItem('userDatabase')) || {};
+            const currentUser = localStorage.getItem('currentUser');
+            
+            if (!currentUser || !userDatabase[currentUser]) {
+                alert('Session expired. Please login again.');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            if (userDatabase[currentUser].password !== password) {
+                alert('Incorrect password');
+                return;
+            }
+            
+            // Here you would normally send the withdrawal request to your backend
+            alert(`Withdrawal request for ${amount} USDT via ${selectedMethod} to address ${address} has been submitted.`);
+            
+            // Reset form
+            amountInput.value = '';
+            addressInput.value = '';
+            document.getElementById('password-input').value = '';
+            receiptAmount.textContent = '0.00 USDT';
+        });
+        
+        // Check authentication
+        function checkAuth() {
+            const userDatabase = JSON.parse(localStorage.getItem('userDatabase')) || {};
+            const currentUser = localStorage.getItem('currentUser');
+            
+            if (!currentUser || !userDatabase[currentUser]) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', checkAuth);
+    </script>
+</body>
+</html>
