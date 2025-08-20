@@ -398,8 +398,8 @@
             </div>
             
             <div class="referral-link">
-                <span class="link-text" id="referral-link">https://cryptopro.com/signup?ref=CP9X2F</span>
-                <button class="copy-btn" id="copy-link-btn" data-text="https://cryptopro.com/signup?ref=CP9X2F">
+                <span class="link-text" id="referral-link">https://bbogdanaki05-lgtm.github.io/demo/signup?ref=CP9X2F</span>
+                <button class="copy-btn" id="copy-link-btn" data-text="https://bbogdanaki05-lgtm.github.io/demo/signup?ref=CP9X2F">
                     <i class="fas fa-copy"></i>
                 </button>
             </div>
@@ -680,7 +680,7 @@
         function generateQRCode() {
             const qrElement = document.getElementById('qrcode');
             const referralCode = getReferralCode();
-            const signupUrl = `https://cryptopro.com/signup?ref=${referralCode}`;
+            const signupUrl = `https://bbogdanaki05-lgtm.github.io/demo/signup?ref=${referralCode}`;
             
             // Clear previous QR code if any
             qrElement.innerHTML = '';
@@ -754,7 +754,7 @@
             document.getElementById('copy-code-btn').dataset.text = referralCode;
             
             // Set referral link
-            const referralLink = `https://cryptopro.com/signup?ref=${referralCode}`;
+            const referralLink = `https://bbogdanaki05-lgtm.github.io/demo/signup?ref=${referralCode}`;
             document.getElementById('referral-link').textContent = referralLink;
             document.getElementById('copy-link-btn').dataset.text = referralLink;
             
@@ -807,4 +807,5 @@
         });
     </script>
 </body>
+
 </html>
