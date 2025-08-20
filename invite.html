@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invite Friends - CryptoPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            padding-bottom: 80px;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            filter: brightness(0) invert(0.8);
+        }
+        
+        .company-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .telegram-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin-right: 15px;
+            filter: invert(88%) sepia(21%) saturate(428%) hue-rotate(162deg) brightness(105%) contrast(89%);
+            transition: transform 0.2s;
+        }
+        
+        .telegram-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .language-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #e0e0e0;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 500px;
+            margin: 70px auto 20px;
+            padding: 20px;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 20px 0 30px;
+            font-size: 24px;
+            color: #e0e0e0;
+        }
+        
+        .card {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #444;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #87ceeb;
+            text-align: center;
+        }
+        
+        .qr-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .qr-code {
+            width: 180px;
+            height: 180px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .qr-code canvas {
+            border-radius: 5px;
+        }
+        
+        .referral-section {
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .referral-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #b0b0b0;
+        }
+        
+        .referral-code {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #87ceeb;
+            margin: 15px 0;
+            background-color: rgba(135, 206, 235, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        
+        .copy-btn {
+            background-color: #87ceeb;
+            color: #1e1e1e;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background-color: #6cb4d8;
+        }
+        
+        .referral-link {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            word-break: break-all;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .link-text {
+            flex: 1;
+            padding-right: 10px;
+        }
+        
+        .social-share {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+        
+        .facebook {
+            background-color: #3b5998;
+        }
+        
+        .twitter {
+            background-color: #1da1f2;
+        }
+        
+        .whatsapp {
+            background-color: #25d366;
+        }
+        
+        .telegram {
+            background-color: #0088cc;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #b0b0b0;
+            margin-top: 5px;
+        }
+        
+        .referral-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(135, 206, 235, 0.05);
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .referral-info ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .referral-info li {
+            margin-bottom: 8px;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        /* Bottom Menu */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            width: 25%;
+        }
+        
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #333;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #87ceeb;
+            font-size: 16px;
+        }
+        
+        .menu-label {
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+        
+        .menu-item.active .menu-icon {
+            background-color: #87ceeb;
+            color: #1e1e1e;
+        }
+        
+        .menu-item.active .menu-label {
+            color: #87ceeb;
+        }
+        
+        @media (max-width: 500px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+            
+            .qr-code {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .referral-code {
+                font-size: 22px;
+                letter-spacing: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="https://via.placeholder.com/40" alt="Company Logo" class="logo">
+            <div class="company-name" id="company-name">CryptoPro</div>
+        </div>
+        <div class="header-right">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon" id="telegram-icon">
+            <select class="language-selector" id="language-selector">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="ru">Русский</option>
+                <option value="hi">हिन्दी</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="page-title" id="invite-title">Invite Friends</h1>
+        
+        <div class="card">
+            <h2 class="card-title" id="qr-title">Scan to Join CryptoPro</h2>
+            <div class="qr-container">
+                <div class="qr-code" id="qrcode"></div>
+            </div>
+            
+            <div class="referral-section">
+                <p class="referral-title" id="your-code-label">Your unique referral code:</p>
+                <div>
+                    <span class="referral-code" id="referral-code">CP9X2F</span>
+                    <button class="copy-btn" id="copy-code-btn" data-text="CP9X2F">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="referral-link">
+                <span class="link-text" id="referral-link">https://cryptopro.com/signup?ref=CP9X2F</span>
+                <button class="copy-btn" id="copy-link-btn" data-text="https://cryptopro.com/signup?ref=CP9X2F">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            
+            <div class="social-share">
+                <div class="social-icon facebook" id="facebook-share">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-icon twitter" id="twitter-share">
+                    <i class="fab fa-twitter"></i>
+                </div>
+                <div class="social-icon whatsapp" id="whatsapp-share">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="social-icon telegram" id="telegram-share">
+                    <i class="fab fa-telegram-plane"></i>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-value" id="invited-count">0</div>
+                    <div class="stat-label" id="invited-label">Friends Invited</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="earned-amount">$0.00</div>
+                    <div class="stat-label" id="earned-label">Total Earned</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title" id="benefits-title">Referral Program</h2>
+            
+            <div class="referral-info">
+                <p><strong id="level1">🔹 Level 1 (Direct referrals): 10%</strong></p>
+                <p><strong id="level2">🔹 Level 2 (Indirect referrals): 3%</strong></p>
+                <p><strong id="level3">🔹 Level 3 (Extended referrals): 2%</strong></p>
+                
+                <p id="income-text">Referral income is paid instantly and can be withdrawn anytime.</p>
+                
+                <p><strong id="promotions-title">🎁 Promotions & Network Incentives:</strong></p>
+                <p id="promotion1">🎉 Invite 5 users and unlock a special gift package</p>
+                <p id="promotion2">🎯 Higher referral deposits = larger bonuses</p>
+                <p id="promotion3">📈 Advance to higher plans faster by growing your team</p>
+                <p id="promotion4">🏆 Top inviters are featured monthly with cashback prizes</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Menu -->
+    <nav class="bottom-menu">
+        <div class="menu-item" onclick="window.location.href='dashboard.html'">
+            <div class="menu-icon">H</div>
+            <div class="menu-label" id="home-label">Home</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='plans.html'">
+            <div class="menu-icon">P</div>
+            <div class="menu-label" id="plans-label">Plans</div>
+        </div>
+        <div class="menu-item active" onclick="window.location.href='team.html'">
+            <div class="menu-icon">T</div>
+            <div class="menu-label" id="team-label">Team</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='me.html'">
+            <div class="menu-icon">M</div>
+            <div class="menu-label" id="me-label">Me</div>
+        </div>
+    </nav>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toast-message">Copied to clipboard!</span>
+    </div>
+
+    <!-- QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.0/build/qrcode.min.js"></script>
+
+    <script>
+        // Multi-language support
+        const translations = {
+            en: {
+                companyName: "CryptoPro",
+                inviteTitle: "Invite Friends",
+                qrTitle: "Scan to Join CryptoPro",
+                yourCodeLabel: "Your unique referral code:",
+                benefitsTitle: "Referral Program",
+                level1: "🔹 Level 1 (Direct referrals): 10%",
+                level2: "🔹 Level 2 (Indirect referrals): 3%",
+                level3: "🔹 Level 3 (Extended referrals): 2%",
+                incomeText: "Referral income is paid instantly and can be withdrawn anytime.",
+                promotionsTitle: "🎁 Promotions & Network Incentives:",
+                promotion1: "🎉 Invite 5 users and unlock a special gift package",
+                promotion2: "🎯 Higher referral deposits = larger bonuses",
+                promotion3: "📈 Advance to higher plans faster by growing your team",
+                promotion4: "🏆 Top inviters are featured monthly with cashback prizes",
+                invitedLabel: "Friends Invited",
+                earnedLabel: "Total Earned",
+                copiedMessage: "Copied to clipboard!",
+                homeLabel: "Home",
+                plansLabel: "Plans",
+                teamLabel: "Team",
+                meLabel: "Me"
+            },
+            es: {
+                companyName: "CryptoPro",
+                inviteTitle: "Invitar Amigos",
+                qrTitle: "Escanear para Unirse a CryptoPro",
+                yourCodeLabel: "Tu código de referencia único:",
+                benefitsTitle: "Programa de Referidos",
+                level1: "🔹 Nivel 1 (Referidos directos): 10%",
+                level2: "🔹 Nivel 2 (Referidos indirectos): 3%",
+                level3: "🔹 Nivel 3 (Referidos extendidos): 2%",
+                incomeText: "Los ingresos por referidos se pagan al instante y se pueden retirar en cualquier momento.",
+                promotionsTitle: "🎁 Promociones e Incentivos de Red:",
+                promotion1: "🎉 Invita a 5 usuarios y desbloquea un paquete de regalo especial",
+                promotion2: "🎯 Depósitos de referidos más altos = bonificaciones más grandes",
+                promotion3: "📈 Avanza a planes superiores más rápido haciendo crecer tu equipo",
+                promotion4: "🏆 Los mejores invitadores son destacados mensualmente con premios de cashback",
+                invitedLabel: "Amigos Invitados",
+                earnedLabel: "Total Ganado",
+                copiedMessage: "¡Copiado al portapapeles!",
+                homeLabel: "Inicio",
+                plansLabel: "Planes",
+                teamLabel: "Equipo",
+                meLabel: "Yo"
+            },
+            fr: {
+                companyName: "CryptoPro",
+                inviteTitle: "Invitez des Amis",
+                qrTitle: "Scannez pour Rejoindre CryptoPro",
+                yourCodeLabel: "Votre code de parrainage unique :",
+                benefitsTitle: "Programme de Parrainage",
+                level1: "🔹 Niveau 1 (Parrainages directs): 10%",
+                level2: "🔹 Niveau 2 (Parrainages indirects): 3%",
+                level3: "🔹 Niveau 3 (Parrainages étendus): 2%",
+                incomeText: "Les revenus de parrainage sont payés instantanément et peuvent être retirés à tout moment.",
+                promotionsTitle: "🎁 Promotions et Incitations Réseau:",
+                promotion1: "🎉 Invitez 5 utilisateurs et débloquez un pack cadeau spécial",
+                promotion2: "🎯 Dépôts de parrainage plus élevés = bonus plus importants",
+                promotion3: "📈 Passez à des plans supérieurs plus rapidement en développant votre équipe",
+                promotion4: "🏆 Les meilleurs parraineurs sont mis en avant mensuellement avec des prix de cashback",
+                invitedLabel: "Amis Invités",
+                earnedLabel: "Total Gagné",
+                copiedMessage: "Copié dans le presse-papiers !",
+                homeLabel: "Accueil",
+                plansLabel: "Plans",
+                teamLabel: "Équipe",
+                meLabel: "Moi"
+            },
+            de: {
+                companyName: "CryptoPro",
+                inviteTitle: "Freunde Einladen",
+                qrTitle: "Scannen Sie, um CryptoPro beizutreten",
+                yourCodeLabel: "Ihr persönlicher Empfehlungscode:",
+                benefitsTitle: "Empfehlungsprogramm",
+                level1: "🔹 Stufe 1 (Direkte Empfehlungen): 10%",
+                level2: "🔹 Stufe 2 (Indirekte Empfehlungen): 3%",
+                level3: "🔹 Stufe 3 (Erweiterte Empfehlungen): 2%",
+                incomeText: "Empfehlungseinkommen wird sofort ausgezahlt und kann jederzeit abgehoben werden.",
+                promotionsTitle: "🎁 Promotionen & Netzwerkanreize:",
+                promotion1: "🎉 Laden Sie 5 Benutzer ein und entsperren Sie ein spezielles Geschenkpaket",
+                promotion2: "🎯 Höhere Empfehlungseinzahlungen = größere Boni",
+                promotion3: "📈 Steigen Sie schneller zu höheren Plänen auf, indem Sie Ihr Team vergrößern",
+                promotion4: "🏆 Top-Einlader werden monatlich mit Cashback-Preisen vorgestellt",
+                invitedLabel: "Eingeladene Freunde",
+                earnedLabel: "Insgesamt Verdient",
+                copiedMessage: "In die Zwischenablage kopiert!",
+                homeLabel: "Startseite",
+                plansLabel: "Pläne",
+                teamLabel: "Team",
+                meLabel: "Ich"
+            },
+            ru: {
+                companyName: "CryptoPro",
+                inviteTitle: "Пригласить Друзей",
+                qrTitle: "Отсканируйте, чтобы присоединиться к CryptoPro",
+                yourCodeLabel: "Ваш уникальный реферальный код:",
+                benefitsTitle: "Реферальная Программа",
+                level1: "🔹 Уровень 1 (Прямые рефералы): 10%",
+                level2: "🔹 Уровень 2 (Косвенные рефералы): 3%",
+                level3: "🔹 Уровень 3 (Расширенные рефералы): 2%",
+                incomeText: "Реферальный доход выплачивается мгновенно и может быть снят в любое время.",
+                promotionsTitle: "🎁 Акции и Сетевые Стимулы:",
+                promotion1: "🎉 Пригласите 5 пользователей и откройте специальный подарочный пакет",
+                promotion2: "🎯 Более высокие реферальные депозиты = большие бонусы",
+                promotion3: "📈 Переходите на более высокие планы быстрее, увеличивая свою команду",
+                promotion4: "🏆 Лучшие пригласители ежемесячно отмечаются призами cashback",
+                invitedLabel: "Приглашённых Друзей",
+                earnedLabel: "Всего Заработано",
+                copiedMessage: "Скопировано в буфер обмена!",
+                homeLabel: "Главная",
+                plansLabel: "Планы",
+                teamLabel: "Команда",
+                meLabel: "Я"
+            },
+            hi: {
+                companyName: "CryptoPro",
+                inviteTitle: "दोस्तों को आमंत्रित करें",
+                qrTitle: "CryptoPro में शामिल होने के लिए स्कैन करें",
+                yourCodeLabel: "आपका विशेष रेफ़रल कोड:",
+                benefitsTitle: "रेफ़रल प्रोग्राम",
+                level1: "🔹 स्तर 1 (प्रत्यक्ष रेफ़रल): 10%",
+                level2: "🔹 स्तर 2 (अप्रत्यक्ष रेफ़रल): 3%",
+                level3: "🔹 स्तर 3 (विस्तारित रेफ़रल): 2%",
+                incomeText: "रेफ़रल आय तुरंत भुगतान की जाती है और किसी भी समय निकाली जा सकती है।",
+                promotionsTitle: "🎁 प्रचार और नेटवर्क प्रोत्साहन:",
+                promotion1: "🎉 5 उपयोगकर्ताओं को आमंत्रित करें और एक विशेष उपहार पैकेज अनलॉक करें",
+                promotion2: "🎯 उच्च रेफ़रल जमा = बड़े बोनस",
+                promotion3: "🎯 अपनी टीम को बढ़ाकर उच्च योजनाओं में तेजी से आगे बढ़ें",
+                promotion4: "🏆 शीर्ष आमंत्रितकर्ताओं को मासिक रूप से कैशबैक पुरस्कारों के साथ चित्रित किया जाता है",
+                invitedLabel: "आमंत्रित दोस्त",
+                earnedLabel: "कुल कमाई",
+                copiedMessage: "क्लिपबोर्ड पर कॉपी किया गया!",
+                homeLabel: "होम",
+                plansLabel: "योजनाएं",
+                teamLabel: "टीम",
+                meLabel: "मैं"
+            },
+            zh: {
+                companyName: "CryptoPro",
+                inviteTitle: "邀请朋友",
+                qrTitle: "扫描加入CryptoPro",
+                yourCodeLabel: "您的专属推荐码:",
+                benefitsTitle: "推荐计划",
+                level1: "🔹 级别 1 (直接推荐): 10%",
+                level2: "🔹 级别 2 (间接推荐): 3%",
+                level3: "🔹 级别 3 (扩展推荐): 2%",
+                incomeText: "推荐收入即时支付，可随时提现。",
+                promotionsTitle: "🎁 促销和网络激励:",
+                promotion1: "🎉 邀请5位用户即可解锁特别礼包",
+                promotion2: "🎯 推荐存款越高，奖金越大",
+                promotion3: "📈 通过发展团队更快升级到更高级别计划",
+                promotion4: "🏆 每月评选顶级邀请者并奖励现金返还",
+                invitedLabel: "已邀请朋友",
+                earnedLabel: "总计赚取",
+                copiedMessage: "已复制到剪贴板！",
+                homeLabel: "首页",
+                plansLabel: "计划",
+                teamLabel: "团队",
+                meLabel: "我的"
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        // Change language function
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const t = translations[lang];
+            
+            // Update all text elements
+            document.getElementById('company-name').textContent = t.companyName;
+            document.getElementById('invite-title').textContent = t.inviteTitle;
+            document.getElementById('qr-title').textContent = t.qrTitle;
+            document.getElementById('your-code-label').textContent = t.yourCodeLabel;
+            document.getElementById('benefits-title').textContent = t.benefitsTitle;
+            document.getElementById('level1').textContent = t.level1;
+            document.getElementById('level2').textContent = t.level2;
+            document.getElementById('level3').textContent = t.level3;
+            document.getElementById('income-text').textContent = t.incomeText;
+            document.getElementById('promotions-title').textContent = t.promotionsTitle;
+            document.getElementById('promotion1').textContent = t.promotion1;
+            document.getElementById('promotion2').textContent = t.promotion2;
+            document.getElementById('promotion3').textContent = t.promotion3;
+            document.getElementById('promotion4').textContent = t.promotion4;
+            document.getElementById('invited-label').textContent = t.invitedLabel;
+            document.getElementById('earned-label').textContent = t.earnedLabel;
+            document.getElementById('home-label').textContent = t.homeLabel;
+            document.getElementById('plans-label').textContent = t.plansLabel;
+            document.getElementById('team-label').textContent = t.teamLabel;
+            document.getElementById('me-label').textContent = t.meLabel;
+            
+            document.documentElement.lang = lang;
+        }
+
+        // Generate QR Code
+        function generateQRCode() {
+            const qrElement = document.getElementById('qrcode');
+            const referralCode = getReferralCode();
+            const signupUrl = `https://cryptopro.com/signup?ref=${referralCode}`;
+            
+            // Clear previous QR code if any
+            qrElement.innerHTML = '';
+            
+            // Generate new QR code
+            QRCode.toCanvas(qrElement, signupUrl, {
+                width: 160,
+                height: 160,
+                margin: 1,
+                color: {
+                    dark: '#000000',
+                    light: '#ffffff'
+                }
+            }, function(error) {
+                if (error) console.error(error);
+            });
+        }
+
+        // Get or generate persistent referral code
+        function getReferralCode() {
+            let referralCode = localStorage.getItem('userReferralCode');
+            
+            if (!referralCode) {
+                // Generate new referral code if none exists
+                referralCode = generateReferralCode();
+                localStorage.setItem('userReferralCode', referralCode);
+            }
+            
+            return referralCode;
+        }
+
+        // Generate random referral code
+        function generateReferralCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = '';
+            for (let i = 0; i < 6; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(translations[currentLanguage].copiedMessage);
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get or generate referral code
+            const referralCode = getReferralCode();
+            
+            // Update UI with referral code
+            document.getElementById('referral-code').textContent = referralCode;
+            document.getElementById('copy-code-btn').dataset.text = referralCode;
+            
+            // Set referral link
+            const referralLink = `https://cryptopro.com/signup?ref=${referralCode}`;
+            document.getElementById('referral-link').textContent = referralLink;
+            document.getElementById('copy-link-btn').dataset.text = referralLink;
+            
+            // Generate QR code
+            generateQRCode();
+            
+            // Set default values for invited friends and total earned
+            document.getElementById('invited-count').textContent = '0';
+            document.getElementById('earned-amount').textContent = '$0.00';
+            
+            // Language selector change handler
+            document.getElementById('language-selector').addEventListener('change', function() {
+                changeLanguage(this.value);
+            });
+            
+            // Copy code button
+            document.getElementById('copy-code-btn').addEventListener('click', function() {
+                copyToClipboard(this.dataset.text);
+            });
+            
+            // Copy link button
+            document.getElementById('copy-link-btn').addEventListener('click', function() {
+                copyToClipboard(this.dataset.text);
+            });
+            
+            // Social sharing
+            document.getElementById('facebook-share').addEventListener('click', function() {
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralLink)}`, '_blank');
+            });
+            
+            document.getElementById('twitter-share').addEventListener('click', function() {
+                window.open(`https://twitter.com/intent/tweet?text=Join%20me%20on%20CryptoPro%20for%20secure%20crypto%20trading!%20Use%20my%20referral%20code%20${referralCode}%20to%20get%2010%25%20off%20trading%20fees.&url=${encodeURIComponent(referralLink)}`, '_blank');
+            });
+            
+            document.getElementById('whatsapp-share').addEventListener('click', function() {
+                window.open(`https://wa.me/?text=Join%20me%20on%20CryptoPro%20for%20secure%20crypto%20trading!%20Use%20my%20referral%20code%20${referralCode}%20to%20get%2010%25%20off%20trading%20fees.%20${encodeURIComponent(referralLink)}`, '_blank');
+            });
+            
+            document.getElementById('telegram-share').addEventListener('click', function() {
+                window.open(`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=Join%20me%20on%20CryptoPro%20for%20secure%20crypto%20trading!%20Use%20my%20referral%20code%20${referralCode}%20to%20get%2010%25%20off%20trading%20fees.`, '_blank');
+            });
+            
+            // Telegram icon click handler
+            document.getElementById('telegram-icon').addEventListener('click', function() {
+                window.open('https://t.me/yourcompanychannel', '_blank');
+            });
+            
+            // Initial setup
+            changeLanguage(currentLanguage);
+        });
+    </script>
+</body>
+</html>

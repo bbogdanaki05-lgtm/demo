@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw Tutorial - CryptoPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            padding-bottom: 80px;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .back-button {
+            font-size: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+            color: #87ceeb;
+        }
+        
+        .page-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+        
+        .language-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #e0e0e0;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        /* Content Styles */
+        .content {
+            padding: 80px 20px 20px;
+        }
+        
+        .tutorial-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tutorial-step {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #444;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #87ceeb;
+            color: #1e1e1e;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #87ceeb;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .step-content {
+            margin-top: 10px;
+            padding-left: 40px;
+            line-height: 1.6;
+        }
+        
+        .step-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 1px solid #555;
+        }
+        
+        /* Bottom Menu */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #333;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #87ceeb;
+        }
+        
+        .menu-label {
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="back-button" id="back-button">&#x2039;</div>
+        <div class="page-title" id="page-title">Withdraw Tutorial</div>
+        <select class="language-selector" id="language-selector">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="ru">Русский</option>
+            <option value="hi">हिन्दी</option>
+            <option value="zh">中文</option>
+        </select>
+    </header>
+
+    <!-- Content Section -->
+    <div class="content">
+        <div class="tutorial-container">
+            <div class="tutorial-step">
+                <div class="step-number">1</div>
+                <div class="step-title" id="step1-title">Log in to your account</div>
+                <div class="step-content" id="step1-content">
+                    Open CryptoPro and enter your credentials to access your dashboard.
+                    <img src="images/login-step.png" alt="Login screenshot" class="step-image">
+                </div>
+            </div>
+            
+            <div class="tutorial-step">
+                <div class="step-number">2</div>
+                <div class="step-title" id="step2-title">Go to Withdraw section</div>
+                <div class="step-content" id="step2-content">
+                    Tap on the "Withdraw" option in the main menu or home screen.
+                    <img src="images/withdraw-step.png" alt="Withdraw screenshot" class="step-image">
+                </div>
+            </div>
+            
+            <div class="tutorial-step">
+                <div class="step-number">3</div>
+                <div class="step-title" id="step3-title">Select network</div>
+                <div class="step-content" id="step3-content">
+                    Choose between BEP20 or TRC20 networks for your withdrawal.
+                    <img src="images/network-step.png" alt="Network selection" class="step-image">
+                </div>
+            </div>
+            
+            <div class="tutorial-step">
+                <div class="step-number">4</div>
+                <div class="step-title" id="step4-title">Enter withdrawal details</div>
+                <div class="step-content" id="step4-content">
+                    Input the amount and your external wallet address carefully.
+                    <img src="images/withdraw-details.png" alt="Withdrawal details" class="step-image">
+                </div>
+            </div>
+            
+            <div class="tutorial-step">
+                <div class="step-number">5</div>
+                <div class="step-title" id="step5-title">Confirm transaction</div>
+                <div class="step-content" id="step5-content">
+                    Double-check all information and confirm the withdrawal.
+                    <img src="images/confirm-withdraw.png" alt="Confirmation" class="step-image">
+                </div>
+            </div>
+            
+            <div class="tutorial-step">
+                <div class="step-number">6</div>
+                <div class="step-title" id="step6-title">Wait for processing</div>
+                <div class="step-content" id="step6-content">
+                    Withdrawals are typically completed within 24 hours.
+                    <img src="images/processing.png" alt="Processing" class="step-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Menu -->
+    <nav class="bottom-menu">
+        <div class="menu-item" onclick="window.location.href='dashboard.html'">
+            <div class="menu-icon">H</div>
+            <div class="menu-label" id="home-label">Home</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='plans.html'">
+            <div class="menu-icon">P</div>
+            <div class="menu-label" id="plans-label">Plans</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='invite.html'">
+            <div class="menu-icon">T</div>
+            <div class="menu-label" id="team-label">Team</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='me.html'">
+            <div class="menu-icon">M</div>
+            <div class="menu-label" id="me-label">Me</div>
+        </div>
+    </nav>
+
+    <script>
+        // Multi-language support
+        const translations = {
+            en: {
+                pageTitle: "Withdraw Tutorial",
+                step1Title: "Log in to your account",
+                step1Content: "Open CryptoPro and enter your credentials to access your dashboard.",
+                step2Title: "Go to Withdraw section",
+                step2Content: "Tap on the 'Withdraw' option in the main menu or home screen.",
+                step3Title: "Select network",
+                step3Content: "Choose between BEP20 or TRC20 networks for your withdrawal.",
+                step4Title: "Enter withdrawal details",
+                step4Content: "Input the amount and your external wallet address carefully.",
+                step5Title: "Confirm transaction",
+                step5Content: "Double-check all information and confirm the withdrawal.",
+                step6Title: "Wait for processing",
+                step6Content: "Withdrawals are typically completed within 24 hours.",
+                homeLabel: "Home",
+                plansLabel: "Plans",
+                teamLabel: "Team",
+                meLabel: "Me"
+            },
+            es: {
+                pageTitle: "Tutorial de Retiro",
+                step1Title: "Inicia sesión en tu cuenta",
+                step1Content: "Abre CryptoPro e ingresa tus credenciales para acceder a tu panel.",
+                step2Title: "Ir a la sección de Retiro",
+                step2Content: "Toca la opción 'Retirar' en el menú principal o pantalla de inicio.",
+                step3Title: "Seleccionar red",
+                step3Content: "Elige entre las redes BEP20 o TRC20 para tu retiro.",
+                step4Title: "Ingresar detalles del retiro",
+                step4Content: "Ingresa cuidadosamente el monto y tu dirección de billetera externa.",
+                step5Title: "Confirmar transacción",
+                step5Content: "Verifica toda la información y confirma el retiro.",
+                step6Title: "Espera el procesamiento",
+                step6Content: "Los retiros normalmente se completan en 24 horas.",
+                homeLabel: "Inicio",
+                plansLabel: "Planes",
+                teamLabel: "Equipo",
+                meLabel: "Yo"
+            },
+            fr: {
+                pageTitle: "Tutoriel de Retrait",
+                step1Title: "Connectez-vous à votre compte",
+                step1Content: "Ouvrez CryptoPro et entrez vos identifiants pour accéder à votre tableau de bord.",
+                step2Title: "Allez à la section Retrait",
+                step2Content: "Appuyez sur l'option 'Retirer' dans le menu principal ou l'écran d'accueil.",
+                step3Title: "Sélectionnez le réseau",
+                step3Content: "Choisissez entre les réseaux BEP20 ou TRC20 pour votre retrait.",
+                step4Title: "Entrez les détails du retrait",
+                step4Content: "Saisissez soigneusement le montant et votre adresse de portefeuille externe.",
+                step5Title: "Confirmez la transaction",
+                step5Content: "Vérifiez toutes les informations et confirmez le retrait.",
+                step6Title: "Attendez le traitement",
+                step6Content: "Les retraits sont généralement complétés dans les 24 heures.",
+                homeLabel: "Accueil",
+                plansLabel: "Plans",
+                teamLabel: "Équipe",
+                meLabel: "Moi"
+            },
+            de: {
+                pageTitle: "Auszahlungs-Anleitung",
+                step1Title: "Melden Sie sich an",
+                step1Content: "Öffnen Sie CryptoPro und geben Sie Ihre Anmeldedaten ein, um auf Ihr Dashboard zuzugreifen.",
+                step2Title: "Gehen Sie zum Auszahlungsbereich",
+                step2Content: "Tippen Sie im Hauptmenü oder Startbildschirm auf die Option 'Auszahlen'.",
+                step3Title: "Netzwerk auswählen",
+                step3Content: "Wählen Sie zwischen BEP20- oder TRC20-Netzwerken für Ihre Auszahlung.",
+                step4Title: "Auszahlungsdetails eingeben",
+                step4Content: "Geben Sie den Betrag und Ihre externe Wallet-Adresse sorgfältig ein.",
+                step5Title: "Transaktion bestätigen",
+                step5Content: "Überprüfen Sie alle Informationen und bestätigen Sie die Auszahlung.",
+                step6Title: "Auf Bearbeitung warten",
+                step6Content: "Auszahlungen werden in der Regel innerhalb von 24 Stunden abgeschlossen.",
+                homeLabel: "Startseite",
+                plansLabel: "Pläne",
+                teamLabel: "Team",
+                meLabel: "Ich"
+            },
+            ru: {
+                pageTitle: "Руководство по выводу",
+                step1Title: "Войдите в аккаунт",
+                step1Content: "Откройте CryptoPro и введите свои данные для доступа к панели управления.",
+                step2Title: "Перейдите в раздел вывода",
+                step2Content: "Нажмите на опцию 'Вывести' в главном меню или на домашнем экране.",
+                step3Title: "Выберите сеть",
+                step3Content: "Выберите между сетями BEP20 или TRC20 для вывода.",
+                step4Title: "Введите детали вывода",
+                step4Content: "Внимательно введите сумму и адрес вашего внешнего кошелька.",
+                step5Title: "Подтвердите транзакцию",
+                step5Content: "Проверьте всю информацию и подтвердите вывод.",
+                step6Title: "Дождитесь обработки",
+                step6Content: "Вывод средств обычно завершается в течение 24 часов.",
+                homeLabel: "Главная",
+                plansLabel: "Планы",
+                teamLabel: "Команда",
+                meLabel: "Я"
+            },
+            hi: {
+                pageTitle: "निकासी ट्यूटोरियल",
+                step1Title: "अपने खाते में लॉग इन करें",
+                step1Content: "CryptoPro खोलें और अपने डैशबोर्ड तक पहुंचने के लिए अपनी साख दर्ज करें।",
+                step2Title: "निकासी अनुभाग पर जाएं",
+                step2Content: "मुख्य मेनू या होम स्क्रीन में 'निकासी' विकल्प पर टैप करें।",
+                step3Title: "नेटवर्क चुनें",
+                step3Content: "अपनी निकासी के लिए BEP20 या TRC20 नेटवर्क के बीच चयन करें।",
+                step4Title: "निकासी विवरण दर्ज करें",
+                step4Content: "राशि और अपना बाहरी वॉलेट पता सावधानी से दर्ज करें।",
+                step5Title: "लेन-देन की पुष्टि करें",
+                step5Content: "सभी जानकारी दोबारा जांचें और निकासी की पुष्टि करें।",
+                step6Title: "प्रसंस्करण की प्रतीक्षा करें",
+                step6Content: "निकासी आमतौर पर 24 घंटे के भीतर पूरी हो जाती है।",
+                homeLabel: "होम",
+                plansLabel: "योजनाएं",
+                teamLabel: "टीम",
+                meLabel: "मैं"
+            },
+            zh: {
+                pageTitle: "提现教程",
+                step1Title: "登录您的账户",
+                step1Content: "打开CryptoPro并输入您的凭据以访问您的仪表板。",
+                step2Title: "转到提现部分",
+                step2Content: "在主菜单或主屏幕上点击'提现'选项。",
+                step3Title: "选择网络",
+                step3Content: "为您的提现选择BEP20或TRC20网络。",
+                step4Title: "输入提现详情",
+                step4Content: "仔细输入金额和您的外部钱包地址。",
+                step5Title: "确认交易",
+                step5Content: "仔细检查所有信息并确认提现。",
+                step6Title: "等待处理",
+                step6Content: "提现通常在24小时内完成。",
+                homeLabel: "首页",
+                plansLabel: "计划",
+                teamLabel: "团队",
+                meLabel: "我的"
+            }
+        };
+
+        // Change language function
+        function changeLanguage(lang) {
+            const t = translations[lang] || translations['en']; // Fallback to English
+            
+            // Update all text elements
+            document.getElementById('page-title').textContent = t.pageTitle;
+            document.getElementById('step1-title').textContent = t.step1Title;
+            document.getElementById('step1-content').innerHTML = t.step1Content + '<img src="images/login-step.png" alt="Login screenshot" class="step-image">';
+            document.getElementById('step2-title').textContent = t.step2Title;
+            document.getElementById('step2-content').innerHTML = t.step2Content + '<img src="images/withdraw-step.png" alt="Withdraw screenshot" class="step-image">';
+            document.getElementById('step3-title').textContent = t.step3Title;
+            document.getElementById('step3-content').innerHTML = t.step3Content + '<img src="images/network-step.png" alt="Network selection" class="step-image">';
+            document.getElementById('step4-title').textContent = t.step4Title;
+            document.getElementById('step4-content').innerHTML = t.step4Content + '<img src="images/withdraw-details.png" alt="Withdrawal details" class="step-image">';
+            document.getElementById('step5-title').textContent = t.step5Title;
+            document.getElementById('step5-content').innerHTML = t.step5Content + '<img src="images/confirm-withdraw.png" alt="Confirmation" class="step-image">';
+            document.getElementById('step6-title').textContent = t.step6Title;
+            document.getElementById('step6-content').innerHTML = t.step6Content + '<img src="images/processing.png" alt="Processing" class="step-image">';
+            document.getElementById('home-label').textContent = t.homeLabel;
+            document.getElementById('plans-label').textContent = t.plansLabel;
+            document.getElementById('team-label').textContent = t.teamLabel;
+            document.getElementById('me-label').textContent = t.meLabel;
+            
+            document.documentElement.lang = lang;
+            
+            // Save language preference to localStorage
+            localStorage.setItem('selectedLanguage', lang);
+            
+            // Update language selector
+            document.getElementById('language-selector').value = lang;
+        }
+
+        // Back button functionality
+        document.getElementById('back-button').addEventListener('click', function() {
+            window.location.href = 'dashboard.html';
+        });
+
+        // Language selector change handler
+        document.getElementById('language-selector').addEventListener('change', function() {
+            changeLanguage(this.value);
+        });
+
+        // Initialize page
+        function initializePage() {
+            // Check authentication
+            const userDatabase = JSON.parse(localStorage.getItem('userDatabase')) || {};
+            const currentUser = localStorage.getItem('currentUser');
+            
+            if (!currentUser || !userDatabase[currentUser]) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // Get saved language or default to English
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            changeLanguage(savedLanguage);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

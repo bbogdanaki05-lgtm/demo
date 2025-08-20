@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Profile - CryptoPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            padding-bottom: 80px;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+         .back-button {
+            color: #87ceeb;
+            font-size: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .page-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #87ceeb;
+            flex-grow: 1;
+        }
+        
+        .language-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #e0e0e0;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        /* Content Styles */
+        .content {
+            margin-top: 70px;
+            padding: 20px;
+        }
+        
+        .profile-content {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .profile-content h2 {
+            color: #87ceeb;
+            margin: 15px 0 10px;
+        }
+        
+        .profile-content ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        .profile-content li {
+            margin-bottom: 8px;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #555;
+            margin: 20px 0;
+        }
+        
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .company-image {
+            width: 100%;
+            height: 200px;
+            background-color: #444;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #888;
+        }
+        
+        .company-details {
+            line-height: 1.6;
+        }
+        
+        /* Bottom Menu */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            width: 25%;
+        }
+        
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #333;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #87ceeb;
+            font-size: 16px;
+        }
+        
+        .menu-label {
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+        
+        .menu-item.active .menu-icon {
+            background-color: #87ceeb;
+            color: #1e1e1e;
+        }
+        
+        .menu-item.active .menu-label {
+            color: #87ceeb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <a href="dashboard.html" class="back-button">&#x2039;</a>
+        <div class="page-title" id="page-title">Company Profile</div>
+        <select class="language-selector" id="language-selector">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="ru">Русский</option>
+            <option value="hi">हिन्दी</option>
+            <option value="zh">中文</option>
+        </select>
+    </header>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="profile-content" id="profile-content">
+            <p id="intro1">📊 <strong>USDT Project</strong> — AI-Powered Arbitrage Platform for Daily Crypto Returns</p>
+            
+            <p id="intro2">USDT Project is a forward-thinking digital asset platform designed to help investors earn consistent daily profits through strategic arbitrage trading across major cryptocurrency exchanges like Binance, OKX, Huobi, and others.</p>
+            
+            <p id="intro3">By leveraging powerful Artificial Intelligence (AI) algorithms, the platform identifies real-time price differences between identical crypto assets across different exchanges. The AI executes automated, high-frequency trades—capturing profits with unmatched speed, precision, and consistency.</p>
+            
+            <h2 id="howItWorks">🔍 How It Works</h2>
+            
+            <p id="howItWorksDesc">When investors deposit funds into the platform, their assets are pooled into a smart liquidity engine. The AI scans hundreds of trading pairs across multiple global exchanges in real time, pinpointing arbitrage opportunities and executing trades automatically.</p>
+            
+            <p id="howItWorksDesc2">Profits are then shared with investors daily, based on their selected Strategic AI Investment Plan. No trading knowledge is required.</p>
+            
+            <h2 id="keyFeatures">⚙️ Key Features & Benefits</h2>
+            
+            <ul id="featuresList">
+                <li>✅ AI-powered arbitrage engine across top exchanges</li>
+                <li>✅ Guaranteed daily profit distribution</li>
+                <li>✅ Withdraw funds anytime — full liquidity</li>
+                <li>✅ Secure, decentralized wallet integration</li>
+                <li>✅ Transparent transaction logs</li>
+                <li>✅ Automated smart contract execution</li>
+                <li>✅ No experience or active management needed</li>
+                <li>✅ Mobile & desktop platform access</li>
+            </ul>
+            
+            <p id="featureNote">💡 Fully automated, 24/7 profit generation—powered by blockchain and AI.</p>
+            
+            <h2 id="investmentPlans">Strategic AI Investment Plans & Projected Returns (90-Day Cycles)</h2>
+            
+            <ul id="plansList">
+                <li>📤 <strong>Starter Plan:</strong><br>
+                Investment Range: 15 USDT<br>
+                Daily Return Rate: 15.0%</li>
+                
+                <li>📤 <strong>Growth Plan:</strong><br>
+                Investment Range: 99 USDT<br>
+                Daily Return Rate: 16.0%</li>
+                
+                <li>📤 <strong>Pro Plan:</strong><br>
+                Investment Range: 499 USDT<br>
+                Daily Return Rate: 17.0%</li>
+                
+                <li>📤 <strong>Elite Plan:</strong><br>
+                Investment Range: 1999 USDT<br>
+                Daily Return Rate: 18%</li>
+                
+                <li>📤 <strong>Premium Plan:</strong><br>
+                Investment Range: 9999 USDT<br>
+                Daily Return Rate: 20.0%</li>
+                
+                <li>📤 <strong>Titan Plan:</strong><br>
+                Investment Range: 19999 USDT<br>
+                Daily Return Rate: 22.0%</li>
+                
+                <li>📤 <strong>Apex Plan:</strong><br>
+                Investment Range: 100,000 USDT and above<br>
+                Daily Return Rate: 25%</li>
+            </ul>
+            
+            <p id="plansNote">These plans allow investors to choose according to their budget and risk tolerance, with returns calculated and compounded daily over a 90-day investment cycle. The system is fully automated, requiring no manual intervention, enabling effortless passive income generation.</p>
+            
+            <h2 id="referralTitle">👥 Multi-Level Referral & Promotion Rewards</h2>
+            
+            <p id="referralDesc">Earn more by building a network of investors. Our 3-level income model lets you scale earnings passively.</p>
+            
+            <p id="commissionTiers">💸 <strong>Commission Tiers:</strong><br>
+            🔹 Level 1 (Direct referrals): 10%<br>
+            🔹 Level 2 (Indirect referrals): 3%<br>
+            🔹 Level 3 (Extended referrals): 2%</p>
+            
+            <p id="referralNote">Referral income is paid instantly and can be withdrawn anytime.</p>
+            
+            <p id="promotions">🎁 <strong>Promotions & Network Incentives:</strong><br>
+            🎉 Invite 5 users and unlock a special gift package<br>
+            🎯 Higher referral deposits = larger bonuses<br>
+            📈 Advance to higher plans faster by growing your team<br>
+            🏆 Top inviters are featured monthly with cashback prizes</p>
+            
+            <p id="networkGrowth">In this system, network growth equals exponential earnings.</p>
+            
+            <h2 id="accountParams">💼 Account & Transaction Parameters</h2>
+            
+            <ul id="paramsList">
+                <li>Minimum Deposit: 10 USDT</li>
+                <li>Minimum Withdrawal: 1 USDT</li>
+                <li>Withdrawal Frequency: Daily (any time)</li>
+                <li>Withdrawal Fee: 0%</li>
+                <li>Wallet Support: TRC20 / ERC20 / BEP20 compatible</li>
+            </ul>
+            
+            <div class="divider"></div>
+            
+            <p id="stakingNote"><strong>Manual Staking Required:</strong> No</p>
+            
+            <h2 id="securityTitle">🔐 Security & Transparency</h2>
+            
+            <ul id="securityList">
+                <li>✅ AI-powered risk control algorithm</li>
+                <li>✅ Wallet binding for self-custody</li>
+                <li>✅ End-to-end automated transactions</li>
+                <li>✅ Transparent fund movement dashboard</li>
+                <li>✅ Daily profit visibility via income tracker</li>
+                <li>✅ Multilayer encryption and DDoS protection</li>
+            </ul>
+            
+            <p id="securityNote">Your funds, your control — no third-party access, ever.</p>
+            
+            <h2 id="gettingStarted">🛠 How to Get Started in 5 Steps</h2>
+            
+            <ol id="stepsList">
+                <li>Register and create your free account</li>
+                <li>Bind your TRC20-compatible wallet</li>
+                <li>Choose a Strategic AI Investment Plan based on your investment</li>
+                <li>Allow the AI system to operate autonomously, generating daily returns</li>
+                <li>Invite others to grow your passive network income</li>
+            </ol>
+            
+            <h2 id="whyJoin">🌍 Why Join the USDT Project Now?</h2>
+            
+            <p id="benefitsList">🔥 Automated arbitrage means daily compounding profits<br>
+            🌐 Trusted by a fast-growing global user base<br>
+            🧠 No technical experience needed<br>
+            💹 Earn passively with zero effort<br>
+            ⏳ Early investors advance faster through plans<br>
+            🎯 Transparent, efficient, secure, and scalable</p>
+            
+            <p id="finalNote">Every investment here is not just a deposit—it's a gateway to automated financial freedom.</p>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="company-info">
+            <div class="company-image">
+                [Company Image Placeholder]
+            </div>
+            <div class="company-details">
+                <h2 id="aboutTitle">About Our Company</h2>
+                <p id="aboutDesc1">Founded in 2023, USDT Project is a leading innovator in AI-powered cryptocurrency arbitrage solutions. Our team of blockchain experts, financial analysts, and AI specialists have developed a proprietary trading system that delivers consistent returns while maintaining the highest security standards.</p>
+                <p id="aboutDesc2">Our mission is to democratize access to sophisticated trading strategies through artificial intelligence, making profitable crypto investment accessible to everyone.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Menu -->
+    <nav class="bottom-menu">
+        <div class="menu-item" onclick="window.location.href='dashboard.html'">
+            <div class="menu-icon">H</div>
+            <div class="menu-label" id="home-label">Home</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='plans.html'">
+            <div class="menu-icon">P</div>
+            <div class="menu-label" id="plans-label">Plans</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='invite.html'">
+            <div class="menu-icon">T</div>
+            <div class="menu-label" id="team-label">Team</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='me.html'">
+            <div class="menu-icon">M</div>
+            <div class="menu-label" id="me-label">Me</div>
+        </div>
+    </nav>
+
+    <script>
+        // Current language (default to English)
+        let currentLanguage = 'en';
+        
+        // Language translations
+        const translations = {
+            en: {
+                // Menu and header
+                pageTitle: "Company Profile",
+                homeLabel: "Home",
+                plansLabel: "Plans",
+                teamLabel: "Team",
+                meLabel: "Me",
+                
+                // Content
+                intro1: "📊 <strong>USDT Project</strong> — AI-Powered Arbitrage Platform for Daily Crypto Returns",
+                intro2: "USDT Project is a forward-thinking digital asset platform designed to help investors earn consistent daily profits through strategic arbitrage trading across major cryptocurrency exchanges like Binance, OKX, Huobi, and others.",
+                intro3: "By leveraging powerful Artificial Intelligence (AI) algorithms, the platform identifies real-time price differences between identical crypto assets across different exchanges. The AI executes automated, high-frequency trades—capturing profits with unmatched speed, precision, and consistency.",
+                howItWorks: "🔍 How It Works",
+                howItWorksDesc: "When investors deposit funds into the platform, their assets are pooled into a smart liquidity engine. The AI scans hundreds of trading pairs across multiple global exchanges in real time, pinpointing arbitrage opportunities and executing trades automatically.",
+                howItWorksDesc2: "Profits are then shared with investors daily, based on their selected Strategic AI Investment Plan. No trading knowledge is required.",
+                keyFeatures: "⚙️ Key Features & Benefits",
+                featuresList: [
+                    "✅ AI-powered arbitrage engine across top exchanges",
+                    "✅ Guaranteed daily profit distribution",
+                    "✅ Withdraw funds anytime — full liquidity",
+                    "✅ Secure, decentralized wallet integration",
+                    "✅ Transparent transaction logs",
+                    "✅ Automated smart contract execution",
+                    "✅ No experience or active management needed",
+                    "✅ Mobile & desktop platform access"
+                ],
+                featureNote: "💡 Fully automated, 24/7 profit generation—powered by blockchain and AI.",
+                investmentPlans: "Strategic AI Investment Plans & Projected Returns (90-Day Cycles)",
+                plansList: [
+                    "📤 <strong>Starter Plan:</strong><br>Investment Range: 15 USDT<br>Daily Return Rate: 15.0%",
+                    "📤 <strong>Growth Plan:</strong><br>Investment Range: 99 USDT<br>Daily Return Rate: 16.0%",
+                    "📤 <strong>Pro Plan:</strong><br>Investment Range: 499 USDT<br>Daily Return Rate: 17.0%",
+                    "📤 <strong>Elite Plan:</strong><br>Investment Range: 1999 USDT<br>Daily Return Rate: 18%",
+                    "📤 <strong>Premium Plan:</strong><br>Investment Range: 9999 USDT<br>Daily Return Rate: 20.0%",
+                    "📤 <strong>Titan Plan:</strong><br>Investment Range: 19999 USDT<br>Daily Return Rate: 22.0%",
+                    "📤 <strong>Apex Plan:</strong><br>Investment Range: 100,000 USDT and above<br>Daily Return Rate: 25%"
+                ],
+                plansNote: "These plans allow investors to choose according to their budget and risk tolerance, with returns calculated and compounded daily over a 90-day investment cycle. The system is fully automated, requiring no manual intervention, enabling effortless passive income generation.",
+                referralTitle: "👥 Multi-Level Referral & Promotion Rewards",
+                referralDesc: "Earn more by building a network of investors. Our 3-level income model lets you scale earnings passively.",
+                commissionTiers: "💸 <strong>Commission Tiers:</strong><br>🔹 Level 1 (Direct referrals): 10%<br>🔹 Level 2 (Indirect referrals): 3%<br>🔹 Level 3 (Extended referrals): 2%",
+                referralNote: "Referral income is paid instantly and can be withdrawn anytime.",
+                promotions: "🎁 <strong>Promotions & Network Incentives:</strong><br>🎉 Invite 5 users and unlock a special gift package<br>🎯 Higher referral deposits = larger bonuses<br>📈 Advance to higher plans faster by growing your team<br>🏆 Top inviters are featured monthly with cashback prizes",
+                networkGrowth: "In this system, network growth equals exponential earnings.",
+                accountParams: "💼 Account & Transaction Parameters",
+                paramsList: [
+                    "Minimum Deposit: 10 USDT",
+                    "Minimum Withdrawal: 1 USDT",
+                    "Withdrawal Frequency: Daily (any time)",
+                    "Withdrawal Fee: 0%",
+                    "Wallet Support: TRC20 / ERC20 / BEP20 compatible"
+                ],
+                stakingNote: "<strong>Manual Staking Required:</strong> No",
+                securityTitle: "🔐 Security & Transparency",
+                securityList: [
+                    "✅ AI-powered risk control algorithm",
+                    "✅ Wallet binding for self-custody",
+                    "✅ End-to-end automated transactions",
+                    "✅ Transparent fund movement dashboard",
+                    "✅ Daily profit visibility via income tracker",
+                    "✅ Multilayer encryption and DDoS protection"
+                ],
+                securityNote: "Your funds, your control — no third-party access, ever.",
+                gettingStarted: "🛠 How to Get Started in 5 Steps",
+                stepsList: [
+                    "Register and create your free account",
+                    "Bind your TRC20-compatible wallet",
+                    "Choose a Strategic AI Investment Plan based on your investment",
+                    "Allow the AI system to operate autonomously, generating daily returns",
+                    "Invite others to grow your passive network income"
+                ],
+                whyJoin: "🌍 Why Join the USDT Project Now?",
+                benefitsList: "🔥 Automated arbitrage means daily compounding profits<br>🌐 Trusted by a fast-growing global user base<br>🧠 No technical experience needed<br>💹 Earn passively with zero effort<br>⏳ Early investors advance faster through plans<br>🎯 Transparent, efficient, secure, and scalable",
+                finalNote: "Every investment here is not just a deposit—it's a gateway to automated financial freedom.",
+                aboutTitle: "About Our Company",
+                aboutDesc1: "Founded in 2023, USDT Project is a leading innovator in AI-powered cryptocurrency arbitrage solutions. Our team of blockchain experts, financial analysts, and AI specialists have developed a proprietary trading system that delivers consistent returns while maintaining the highest security standards.",
+                aboutDesc2: "Our mission is to democratize access to sophisticated trading strategies through artificial intelligence, making profitable crypto investment accessible to everyone."
+            },
+            es: {
+                pageTitle: "Perfil de la Empresa",
+                homeLabel: "Inicio",
+                plansLabel: "Planes",
+                teamLabel: "Equipo",
+                meLabel: "Yo",
+                intro1: "📊 <strong>USDT Project</strong> — Plataforma de Arbitraje con IA para Rendimientos Diarios en Cripto",
+                intro2: "USDT Project es una plataforma de activos digitales innovadora diseñada para ayudar a los inversores a obtener ganancias diarias consistentes mediante el arbitraje estratégico en los principales exchanges de criptomonedas como Binance, OKX, Huobi y otros.",
+                intro3: "Al aprovechar potentes algoritmos de Inteligencia Artificial (IA), la plataforma identifica diferencias de precios en tiempo real entre activos cripto idénticos en diferentes exchanges. La IA ejecuta operaciones automatizadas de alta frecuencia, capturando ganancias con velocidad, precisión y consistencia inigualables.",
+                howItWorks: "🔍 Cómo Funciona",
+                howItWorksDesc: "Cuando los inversores depositan fondos en la plataforma, sus activos se agrupan en un motor de liquidez inteligente. La IA escanea cientos de pares de trading en múltiples exchanges globales en tiempo real, identificando oportunidades de arbitraje y ejecutando operaciones automáticamente.",
+                howItWorksDesc2: "Las ganancias se comparten diariamente con los inversores, según su Plan de Inversión Estratégico con IA seleccionado. No se requiere conocimiento de trading.",
+                keyFeatures: "⚙️ Características y Beneficios Clave",
+                featuresList: [
+                    "✅ Motor de arbitraje con IA en los principales exchanges",
+                    "✅ Distribución diaria garantizada de ganancias",
+                    "✅ Retira fondos en cualquier momento — liquidez total",
+                    "✅ Integración segura de billeteras descentralizadas",
+                    "✅ Registros de transacciones transparentes",
+                    "✅ Ejecución automatizada de contratos inteligentes",
+                    "✅ No se necesita experiencia ni gestión activa",
+                    "✅ Acceso desde plataformas móviles y de escritorio"
+                ],
+                featureNote: "💡 Generación de ganancias totalmente automatizada, 24/7, impulsada por blockchain e IA.",
+                investmentPlans: "Planes Estratégicos de Inversión con IA y Rendimientos Proyectados (Ciclos de 90 Días)",
+                plansList: [
+                    "📤 <strong>Plan Básico:</strong><br>Rango de Inversión: 15 USDT<br>Tasa de Retorno Diario: 15.0%",
+                    "📤 <strong>Plan de Crecimiento:</strong><br>Rango de Inversión: 99 USDT<br>Tasa de Retorno Diario: 16.0%",
+                    "📤 <strong>Plan Pro:</strong><br>Rango de Inversión: 499 USDT<br>Tasa de Retorno Diario: 17.0%",
+                    "📤 <strong>Plan Elite:</strong><br>Rango de Inversión: 1999 USDT<br>Tasa de Retorno Diario: 18%",
+                    "📤 <strong>Plan Premium:</strong><br>Rango de Inversión: 9999 USDT<br>Tasa de Retorno Diario: 20.0%",
+                    "📤 <strong>Plan Titán:</strong><br>Rango de Inversión: 19999 USDT<br>Tasa de Retorno Diario: 22.0%",
+                    "📤 <strong>Plan Apex:</strong><br>Rango de Inversión: 100,000 USDT o más<br>Tasa de Retorno Diario: 25%"
+                ],
+                plansNote: "Estos planes permiten a los inversores elegir según su presupuesto y tolerancia al riesgo, con rendimientos calculados y compuestos diariamente durante un ciclo de inversión de 90 días. El sistema está totalmente automatizado, sin necesidad de intervención manual, lo que permite una generación de ingresos pasivos sin esfuerzo.",
+                referralTitle: "👥 Recompensas de Referidos Multinivel y Promociones",
+                referralDesc: "Gana más construyendo una red de inversores. Nuestro modelo de ingresos de 3 niveles te permite escalar ganancias pasivamente.",
+                commissionTiers: "💸 <strong>Niveles de Comisión:</strong><br>🔹 Nivel 1 (Referidos directos): 10%<br>🔹 Nivel 2 (Referidos indirectos): 3%<br>🔹 Nivel 3 (Referidos extendidos): 2%",
+                referralNote: "Los ingresos por referidos se pagan al instante y pueden retirarse en cualquier momento.",
+                promotions: "🎁 <strong>Promociones e Incentivos de Red:</strong><br>🎉 Invita a 5 usuarios y desbloquea un paquete de regalo especial<br>🎯 Depósitos de referidos más altos = bonificaciones más grandes<br>📈 Avanza a planes superiores más rápido haciendo crecer tu equipo<br>🏆 Los mejores referidores son destacados mensualmente con premios de cashback",
+                networkGrowth: "En este sistema, el crecimiento de la red equivale a ganancias exponenciales.",
+                accountParams: "💼 Parámetros de Cuenta y Transacciones",
+                paramsList: [
+                    "Depósito Mínimo: 10 USDT",
+                    "Retiro Mínimo: 1 USDT",
+                    "Frecuencia de Retiro: Diaria (en cualquier momento)",
+                    "Comisión por Retiro: 0%",
+                    "Soporte de Billetera: Compatible con TRC20 / ERC20 / BEP20"
+                ],
+                stakingNote: "<strong>Staking Manual Requerido:</strong> No",
+                securityTitle: "🔐 Seguridad y Transparencia",
+                securityList: [
+                    "✅ Algoritmo de control de riesgos con IA",
+                    "✅ Vinculación de billetera para auto-custodia",
+                    "✅ Transacciones automatizadas de extremo a extremo",
+                    "✅ Panel transparente de movimiento de fondos",
+                    "✅ Visibilidad diaria de ganancias mediante rastreador de ingresos",
+                    "✅ Cifrado multicapa y protección contra DDoS"
+                ],
+                securityNote: "Tus fondos, tu control — sin acceso de terceros, nunca.",
+                gettingStarted: "🛠 Cómo Comenzar en 5 Pasos",
+                stepsList: [
+                    "Regístrate y crea tu cuenta gratuita",
+                    "Vincula tu billetera compatible con TRC20",
+                    "Elige un Plan de Inversión Estratégico con IA según tu inversión",
+                    "Permite que el sistema de IA opere autónomamente, generando rendimientos diarios",
+                    "Invita a otros para hacer crecer tus ingresos pasivos en red"
+                ],
+                whyJoin: "🌍 ¿Por Qué Unirse a USDT Project Ahora?",
+                benefitsList: "🔥 Arbitraje automatizado significa ganancias compuestas diarias<br>🌐 Respaldado por una base de usuarios global en rápido crecimiento<br>🧠 No se necesita experiencia técnica<br>💹 Gana pasivamente sin esfuerzo<br>⏳ Los primeros inversores avanzan más rápido a través de los planes<br>🎯 Transparente, eficiente, seguro y escalable",
+                finalNote: "Cada inversión aquí no es solo un depósito, es una puerta a la libertad financiera automatizada.",
+                aboutTitle: "Sobre Nuestra Empresa",
+                aboutDesc1: "Fundado en 2023, USDT Project es un innovador líder en soluciones de arbitraje de criptomonedas con IA. Nuestro equipo de expertos en blockchain, analistas financieros y especialistas en IA ha desarrollado un sistema de trading propietario que ofrece rendimientos consistentes manteniendo los más altos estándares de seguridad.",
+                aboutDesc2: "Nuestra misión es democratizar el acceso a estrategias de trading sofisticadas mediante inteligencia artificial, haciendo que la inversión rentable en cripto sea accesible para todos."
+            },
+            fr: {
+                pageTitle: "Profil de l'Entreprise",
+                homeLabel: "Accueil",
+                plansLabel: "Plans",
+                teamLabel: "Équipe",
+                meLabel: "Moi",
+                intro1: "📊 <strong>USDT Project</strong> — Plateforme d'Arbitrage Alimentée par l'IA pour des Rendements Quotidiens en Crypto",
+                intro2: "USDT Project est une plateforme d'actifs numériques avant-gardiste conçue pour aider les investisseurs à générer des profits quotidiens constants grâce à l'arbitrage stratégique sur les principales plateformes d'échange de cryptomonnaies comme Binance, OKX, Huobi et autres.",
+                intro3: "En exploitant de puissants algorithmes d'Intelligence Artificielle (IA), la plateforme identifie en temps réel les écarts de prix entre des actifs cryptographiques identiques sur différentes plateformes d'échange. L'IA exécute des transactions automatisées à haute fréquence, capturant des profits avec une vitesse, une précision et une constance inégalées.",
+                howItWorks: "🔍 Comment Ça Marche",
+                howItWorksDesc: "Lorsque les investisseurs déposent des fonds sur la plateforme, leurs actifs sont regroupés dans un moteur de liquidité intelligent. L'IA scanne des centaines de paires de trading sur plusieurs plateformes d'échange mondiales en temps réel, identifiant les opportunités d'arbitrage et exécutant les transactions automatiquement.",
+                howItWorksDesc2: "Les profits sont ensuite partagés quotidiennement avec les investisseurs, selon leur Plan d'Investissement Stratégique avec IA sélectionné. Aucune connaissance en trading n'est requise.",
+                keyFeatures: "⚙️ Caractéristiques et Avantages Clés",
+                featuresList: [
+                    "✅ Moteur d'arbitrage alimenté par l'IA sur les principales plateformes",
+                    "✅ Distribution quotidienne garantie des profits",
+                    "✅ Retirez des fonds à tout moment — liquidité totale",
+                    "✅ Intégration sécurisée de portefeuilles décentralisés",
+                    "✅ Journaux de transactions transparents",
+                    "✅ Exécution automatisée de contrats intelligentes",
+                    "✅ Aucune expérience ou gestion active nécessaire",
+                    "✅ Accès via plateformes mobiles et de bureau"
+                ],
+                featureNote: "💡 Génération de profits entièrement automatisée, 24h/24, 7j/7, alimentée par la blockchain et l'IA.",
+                investmentPlans: "Plans d'Investissement Stratégique avec IA et Rendements Projetés (Cycles de 90 Jours)",
+                plansList: [
+                    "📤 <strong>Plan Débutant:</strong><br>Plage d'Investissement: 15 USDT<br>Taux de Rendement Quotidien: 15.0%",
+                    "📤 <strong>Plan Croissance:</strong><br>Plage d'Investissement: 99 USDT<br>Taux de Rendement Quotidien: 16.0%",
+                    "📤 <strong>Plan Pro:</strong><br>Plage d'Investissement: 499 USDT<br>Taux de Rendement Quotidien: 17.0%",
+                    "📤 <strong>Plan Élite:</strong><br>Plage d'Investissement: 1999 USDT<br>Taux de Rendement Quotidien: 18%",
+                    "📤 <strong>Plan Premium:</strong><br>Plage d'Investissement: 9999 USDT<br>Taux de Rendement Quotidien: 20.0%",
+                    "📤 <strong>Plan Titan:</strong><br>Plage d'Investissement: 19999 USDT<br>Taux de Rendement Quotidien: 22.0%",
+                    "📤 <strong>Plan Apex:</strong><br>Plage d'Investissement: 100,000 USDT et plus<br>Taux de Rendement Quotidien: 25%"
+                ],
+                plansNote: "Ces plans permettent aux investisseurs de choisir selon leur budget et leur tolérance au risque, avec des rendements calculés et composés quotidiennement sur un cycle d'investissement de 90 jours. Le système est entièrement automatisé, ne nécessitant aucune intervention manuelle, permettant une génération de revenus passifs sans effort.",
+                referralTitle: "👥 Récompenses de Parrainage Multi-Niveaux et Promotions",
+                referralDesc: "Gagnez plus en construisant un réseau d'investisseurs. Our 3-level income model lets you scale earnings passively.",
+                commissionTiers: "💸 <strong>Niveaux de Commission:</strong><br>🔹 Niveau 1 (Parrainages directs): 10%<br>🔹 Niveau 2 (Parrainages indirects): 3%<br>🔹 Niveau 3 (Parrainages étendus): 2%",
+                referralNote: "Les revenus de parrainage sont payés instantanément et peuvent être retirés à tout moment.",
+                promotions: "🎁 <strong>Promotions et Incitations Réseau:</strong><br>🎉 Parrainez 5 utilisateurs et débloquez un pack cadeau spécial<br>🎯 Dépôts de parrainage plus élevés = bonus plus importants<br>📈 Progressez vers des plans supérieurs plus rapidement en développant votre équipe<br>🏆 Les meilleurs parraineurs sont mis en avant chaque mois avec des prix de cashback",
+                networkGrowth: "Dans ce système, la croissance du réseau équivaut à des gains exponentiels.",
+                accountParams: "💼 Paramètres de Compte et Transactions",
+                paramsList: [
+                    "Dépôt Minimum: 10 USDT",
+                    "Retrait Minimum: 1 USDT",
+                    "Fréquence de Retrait: Quotidienne (à tout moment)",
+                    "Frais de Retrait: 0%",
+                    "Support de Portefeuille: Compatible TRC20 / ERC20 / BEP20"
+                ],
+                stakingNote: "<strong>Staking Manuel Requis:</strong> Non",
+                securityTitle: "🔐 Sécurité et Transparence",
+                securityList: [
+                    "✅ Algorithme de contrôle des risques alimenté par l'IA",
+                    "✅ Liaison du portefeuille pour auto-custodie",
+                    "✅ Transactions automatisées de bout en bout",
+                    "✅ Tableau de bord transparent des mouvements de fonds",
+                    "✅ Visibilité quotidienne des profits via le suivi des revenus",
+                    "✅ Chiffrement multicouche et protection contre les DDoS"
+                ],
+                securityNote: "Vos fonds, votre contrôle — aucun accès par des tiers, jamais.",
+                gettingStarted: "🛠 Comment Commencer en 5 Étapes",
+                stepsList: [
+                    "Inscrivez-vous et créez votre compte gratuit",
+                    "Lieez votre portefeuille compatible TRC20",
+                    "Choisissez un Plan d'Investissement Stratégique avec IA basé sur votre investissement",
+                    "Laissez le système IA fonctionner de manière autonome, générant des rendements quotidiens",
+                    "Parrainez d'autres personnes pour développer vos revenus passifs en réseau"
+                ],
+                whyJoin: "🌍 Pourquoi Rejoindre USDT Project Maintenant?",
+                benefitsList: "🔥 L'arbitrage automatisé signifie des profits composés quotidiennement<br>🌐 Soutenu par une base d'utilisateurs mondiale en croissance rapide<br>🧠 Aucune expérience technique nécessaire<br>💹 Gagnez passivement sans effort<br>⏳ Les premiers investisseurs progressent plus rapidement à travers les plans<br>🎯 Transparent, efficace, sécurisé et évolutif",
+                finalNote: "Chaque investissement ici n'est pas seulement un dépôt, c'est une porte vers la liberté financière automatisée.",
+                aboutTitle: "À Propos de Notre Entreprise",
+                aboutDesc1: "Fondé en 2023, USDT Project est un innovateur de premier plan dans les solutions d'arbitrage de cryptomonnaies alimentées par l'IA. Notre équipe d'experts en blockchain, d'analystes financiers et de spécialistes en IA a développé un système de trading propriétaire qui offre des rendements constants tout en maintenant les normes de sécurité les plus élevées.",
+                aboutDesc2: "Notre mission est de démocratiser l'accès à des stratégies de trading sophistiquées grâce à l'intelligence artificielle, rendant l'investissement rentable en crypto accessible à tous."
+            },
+            de: {
+                pageTitle: "Firmenprofil",
+                homeLabel: "Startseite",
+                plansLabel: "Pläne",
+                teamLabel: "Team",
+                meLabel: "Ich",
+                intro1: "📊 <strong>USDT Project</strong> — KI-gestützte Arbitrage-Plattform für tägliche Krypto-Renditen",
+                intro2: "USDT Project ist eine zukunftsorientierte Plattform für digitale Vermögenswerte, die Anlegern helfen soll, durch strategischen Arbitrage-Handel an großen Kryptobörsen wie Binance, OKX, Huobi und anderen täglich konsistente Gewinne zu erzielen.",
+                intro3: "En exploitant de puissants algorithmes d'Intelligence Artificielle (IA), la plateforme identifie en temps réel les écarts de prix entre des actifs cryptographiques identiques sur différentes plateformes d'échange. L'IA exécute des transactions automatisées à haute fréquence, capturant des profits avec une vitesse, une précision et une constance inégalées.",
+                howItWorks: "🔍 So funktioniert es",
+                howItWorksDesc: "Wenn Anleger Gelder auf der Plattform einzahlen, werden ihre Vermögenswerte in einer intelligenten Liquiditäts-Engine zusammengefasst. Die KI scannt Hunderte von Handelspaaren an mehreren globalen Börsen in Echtzeit, erkennt Arbitrage-Möglichkeiten und führt Geschäfte automatisch aus.",
+                howItWorksDesc2: "Die Gewinne werden dann täglich an die Anleger ausgezahlt, basierend auf ihrem gewählten Strategischen KI-Investitionsplan. Keine Handelskenntnisse erforderlich.",
+                keyFeatures: "⚙️ Wichtige Funktionen & Vorteile",
+                featuresList: [
+                    "✅ KI-gestützte Arbitrage-Engine an Top-Börsen",
+                    "✅ Garantierte tägliche Gewinnausschüttung",
+                    "✅ Jederzeitige Abhebung von Geldern — volle Liquidität",
+                    "✅ Sichere Integration dezentraler Wallets",
+                    "✅ Transparente Transaktionsprotokolle",
+                    "✅ Automatisierte Ausführung von Smart Contracts",
+                    "✅ Keine Erfahrung oder aktive Verwaltung erforderlich",
+                    "✅ Zugriff über mobile und Desktop-Plattformen"
+                ],
+                featureNote: "💡 Vollautomatisierte, rund um die Uhr Gewinnerzielung — unterstützt durch Blockchain und KI.",
+                investmentPlans: "Strategische KI-Investitionspläne & prognostizierte Renditen (90-Tage-Zyklen)",
+                plansList: [
+                    "📤 <strong>Starter-Plan:</strong><br>Investitionsbereich: 15 USDT<br>Tägliche Rendite: 15.0%",
+                    "📤 <strong>Wachstums-Plan:</strong><br>Investitionsbereich: 99 USDT<br>Tägliche Rendite: 16.0%",
+                    "📤 <strong>Pro-Plan:</strong><br>Investitionsbereich: 499 USDT<br>Tägliche Rendite: 17.0%",
+                    "📤 <strong>Elite-Plan:</strong><br>Investitionsbereich: 1999 USDT<br>Tägliche Rendite: 18%",
+                    "📤 <strong>Premium-Plan:</strong><br>Investitionsbereich: 9999 USDT<br>Tägliche Rendite: 20.0%",
+                    "📤 <strong>Titan-Plan:</strong><br>Investitionsbereich: 19999 USDT<br>Tägliche Rendite: 22.0%",
+                    "📤 <strong>Apex-Plan:</strong><br>Investitionsbereich: 100.000 USDT und mehr<br>Tägliche Rendite: 25%"
+                ],
+                plansNote: "Diese Pläne ermöglichen es Anlegern, entsprechend ihrem Budget und ihrer Risikotoleranz zu wählen, mit Renditen, die täglich über einen 90-tägigen Investitionszyklus berechnet und zusammengesetzt werden. Das System ist vollautomatisiert und erfordert keinen manuellen Eingriff, was eine mühelose Erzielung passiver Einnahmen ermöglicht.",
+                referralTitle: "👥 Multi-Level-Empfehlungs- & Werbeprämien",
+                referralDesc: "Verdienen Sie mehr, indem Sie ein Netzwerk von Anlegern aufbauen. Unser 3-stufiges Einkommensmodell ermöglicht es Ihnen, Einnahmen passiv zu skalieren.",
+                commissionTiers: "💸 <strong>Provisionsebenen:</strong><br>🔹 Ebene 1 (Direkte Empfehlungen): 10%<br>🔹 Ebene 2 (Indirekte Empfehlungen): 3%<br>🔹 Ebene 3 (Erweiterte Empfehlungen): 2%",
+                referralNote: "Empfehlungseinkommen wird sofort ausgezahlt und kann jederzeit abgehoben werden.",
+                promotions: "🎁 <strong>Werbeaktionen & Netzwerkanreize:</strong><br>🎉 Laden Sie 5 Benutzer ein und entsperren Sie ein besonderes Geschenkpaket<br>🎯 Höhere Empfehlungseinzahlungen = größere Boni<br>📈 Steigen Sie schneller zu höheren Plänen auf, indem Sie Ihr Team vergrößern<br>🏆 Top-Einlader werden monatlich mit Cashback-Preisen vorgestellt",
+                networkGrowth: "In diesem System bedeutet Netzwerkwachstum exponentiell steigende Einnahmen.",
+                accountParams: "💼 Konto- & Transaktionsparameter",
+                paramsList: [
+                    "Mindesteinzahlung: 10 USDT",
+                    "Mindestauszahlung: 1 USDT",
+                    "Auszahlungshäufigkeit: Täglich (jederzeit)",
+                    "Auszahlungsgebühr: 0%",
+                    "Wallet-Unterstützung: TRC20 / ERC20 / BEP20 kompatibel"
+                ],
+                stakingNote: "<strong>Manuelles Staking erforderlich:</strong> Nein",
+                securityTitle: "🔐 Sicherheit & Transparenz",
+                securityList: [
+                    "✅ KI-gestützter Risikokontrollalgorithmus",
+                    "✅ Wallet-Bindung zur Selbstverwahrung",
+                    "✅ End-to-End automatisierte Transaktionen",
+                    "✅ Transparentes Dashboard für Geldbewegungen",
+                    "✅ Tägliche Gewinnübersicht durch Einkommenstracker",
+                    "✅ Mehrschichtige Verschlüsselung und DDoS-Schutz"
+                ],
+                securityNote: "Ihre Gelder, Ihre Kontrolle — kein Drittzugriff, niemals.",
+                gettingStarted: "🛠 In 5 Schritten loslegen",
+                stepsList: [
+                    "Registrieren Sie sich und erstellen Sie Ihr kostenloses Konto",
+                    "Binden Sie Ihr TRC20-kompatibles Wallet",
+                    "Wählen Sie einen Strategischen KI-Investitionsplan basierend auf Ihrer Investition",
+                    "Lassen Sie das KI-System autonom arbeiten und tägliche Renditen generieren",
+                    "Laden Sie andere ein, um Ihr passives Netzwerkeinkommen zu steigern"
+                ],
+                whyJoin: "🌍 Warum jetzt dem USDT Project beitreten?",
+                benefitsList: "🔥 Automatisierte Arbitrage bedeutet täglich zusammengesetzte Gewinne<br>🌐 Vertrauen einer schnell wachsenden globalen Nutzerbasis<br>🧠 Keine technischen Kenntnisse erforderlich<br>💹 Verdienen Sie passiv ohne Aufwand<br>⏳ Frühe Investoren steigen schneller durch die Pläne auf<br>🎯 Transparent, effizient, sicher und skalierbar",
+                finalNote: "Jede Investition hier ist nicht nur eine Einzahlung, sondern ein Tor zur automatisierten finanziellen Freiheit.",
+                aboutTitle: "Über unser Unternehmen",
+                aboutDesc1: "Gegründet im Jahr 2023, ist USDT Project ein führender Innovator im Bereich KI-gestützter Krypto-Arbitrage-Lösungen. Unser Team aus Blockchain-Experten, Finanzanalysten und KI-Spezialisten hat ein proprietäres Handelssystem entwickelt, das konsistente Renditen liefert und gleichzeitig höchste Sicherheitsstandards einhält.",
+                aboutDesc2: "Unsere Mission ist es, den Zugang zu anspruchsvollen Handelsstrategien durch künstliche Intelligenz zu demokratisieren und profitable Krypto-Investitionen für jedermann zugänglich zu machen."
+            },
+            ru: {
+                pageTitle: "Профиль компании",
+                homeLabel: "Главная",
+                plansLabel: "Планы",
+                teamLabel: "Команда",
+                meLabel: "Я",
+                intro1: "📊 <strong>USDT Project</strong> — Платформа для арбитража с ИИ для ежедневного дохода в криптовалюте",
+                intro2: "USDT Project — это инновационная платформа цифровых активов, предназначенная для помощи инвесторам в получении стабильной ежедневной прибыли за счет стратегического арбитражного трейдинга на крупных криптовалютных биржах, таких как Binance, OKX, Huobi и других.",
+                intro3: "Используя мощные алгоритмы искусственного интеллекта (ИИ), платформа выявляет разницу цен на идентичные криптоактивы на различных биржах в режиме реального времени. ИИ автоматически выполняет высокочастотные сделки, фиксируя прибыль с непревзойденной скоростью, точностью и стабильностью.",
+                howItWorks: "🔍 Как это работает",
+                howItWorksDesc: "Когда инвесторы вносят средства на платформу, их активы объединяются в интеллектуальный механизм ликвидности. ИИ сканирует сотни торговых пар на нескольких глобальных биржах в реальном времени, выявляя возможности для арбитража и автоматически совершая сделки.",
+                howItWorksDesc2: "Прибыль затем ежедневно распределяется между инвесторами в соответствии с выбранным ими Стратегическим инвестиционным планом с ИИ. Знания трейдинга не требуются.",
+                keyFeatures: "⚙️ Ключевые особенности и преимущества",
+                featuresList: [
+                    "✅ Арбитражный механизм с ИИ на топовых биржах",
+                    "✅ Гарантированное ежедневное распределение прибыли",
+                    "✅ Вывод средств в любое время — полная ликвидность",
+                    "✅ Безопасная интеграция с децентрализованными кошельками",
+                    "✅ Прозрачные журналы транзакций",
+                    "✅ Автоматическое исполнение смарт-контрактов",
+                    "✅ Не требуется опыта или активного управления",
+                    "✅ Доступ с мобильных и десктопных платформ"
+                ],
+                featureNote: "💡 Полностью автоматизированная генерация прибыли 24/7 — работает на блокчейне и ИИ.",
+                investmentPlans: "Стратегические инвестиционные планы с ИИ и прогнозируемая доходность (90-дневные циклы)",
+                plansList: [
+                    "📤 <strong>Стартовый план:</strong><br>Диапазон инвестиций: 15 USDT<br>Ежедневная доходность: 15.0%",
+                    "📤 <strong>План роста:</strong><br>Диапазон инвестиций: 99 USDT<br>Ежедневная доходность: 16.0%",
+                    "📤 <strong>Профессиональный план:</strong><br>Диапазон инвестиций: 499 USDT<br>Ежедневная доходность: 17.0%",
+                    "📤 <strong>Элитный план:</strong><br>Диапазон инвестиций: 1999 USDT<br>Ежедневная доходность: 18%",
+                    "📤 <strong>Премиум план:</strong><br>Диапазон инвестиций: 9999 USDT<br>Ежедневная доходность: 20.0%",
+                    "📤 <strong>План Титан:</strong><br>Диапазон инвестиций: 19999 USDT<br>Ежедневная доходность: 22.0%",
+                    "📤 <strong>План Apex:</strong><br>Диапазон инвестиций: 100,000 USDT и выше<br>Ежедневная доходность: 25%"
+                ],
+                plansNote: "Эти планы позволяют инвесторам выбирать в соответствии со своим бюджетом и толерантностью к риску, с доходностью, рассчитываемой и начисляемой ежедневно в течение 90-дневного инвестиционного цикла. Система полностью автоматизирована, не требует ручного вмешательства, обеспечивая легкое создание пассивного дохода.",
+                referralTitle: "👥 Многоуровневая реферальная программа и бонусы",
+                referralDesc: "Зарабатывайте больше, создавая сеть инвесторов. Наша 3-уровневая модель дохода позволяет масштабировать заработок пассивно.",
+                commissionTiers: "💸 <strong>Уровни комиссий:</strong><br>🔹 Уровень 1 (Прямые рефералы): 10%<br>🔹 Уровень 2 (Косвенные рефералы): 3%<br>🔹 Уровень 3 (Расширенные рефералы): 2%",
+                referralNote: "Реферальный доход выплачивается мгновенно и может быть выведен в любое время.",
+                promotions: "🎁 <strong>Акции и сетевые стимулы:</strong><br>🎉 Пригласите 5 пользователей и получите специальный подарок<br>🎯 Большие депозиты рефералов = большие бонусы<br>📈 Переходите на более высокие планы быстрее, развивая свою команду<br>🏆 Лучшие пригласители ежемесячно получают кэшбек-призы",
+                networkGrowth: "В этой системе рост сети означает экспоненциальный доход.",
+                accountParams: "💼 Параметры аккаунта и транзакций",
+                paramsList: [
+                    "Минимальный депозит: 10 USDT",
+                    "Минимальный вывод: 1 USDT",
+                    "Частота вывода: Ежедневно (в любое время)",
+                    "Комиссия за вывод: 0%",
+                    "Поддержка кошельков: TRC20 / ERC20 / BEP20"
+                ],
+                stakingNote: "<strong>Требуется ручной стейкинг:</strong> Нет",
+                securityTitle: "🔐 Безопасность и прозрачность",
+                securityList: [
+                    "✅ Алгоритм контроля рисков на основе ИИ",
+                    "✅ Привязка кошелька для самостоятельного хранения",
+                    "✅ Сквозные автоматизированные транзакции",
+                    "✅ Прозрачная панель движения средств",
+                    "✅ Ежедневный обзор прибыли через трекер доходов",
+                    "✅ Многослойное шифрование и защита от DDoS"
+                ],
+                securityNote: "Ваши средства, ваш контроль — никакого доступа третьих лиц, никогда.",
+                gettingStarted: "🛠 Как начать за 5 шагов",
+                stepsList: [
+                    "Зарегистрируйтесь и создайте бесплатный аккаунт",
+                    "Привяжите свой TRC20-совместимый кошелек",
+                    "Выберите Стратегический инвестиционный план с ИИ в соответствии с вашей инвестицией",
+                    "Позвольте системе ИИ работать автономно, генерируя ежедневный доход",
+                    "Приглашайте других, чтобы увеличить ваш пассивный сетевой доход"
+                ],
+                whyJoin: "🌍 Почему стоит присоединиться к USDT Project сейчас?",
+                benefitsList: "🔥 Автоматизированный арбитраж означает ежедневное начисление прибыли<br>🌐 Доверие быстро растущей глобальной пользовательской базы<br>🧠 Не требуется технических знаний<br>💹 Зарабатывайте пассивно без усилий<br>⏳ Ранние инвесторы быстрее продвигаются по планам<br>🎯 Прозрачность, эффективность, безопасность и масштабируемость",
+                finalNote: "Каждая инвестиция здесь — это не просто депозит, а путь к автоматизированной финансовой свободе.",
+                aboutTitle: "О нашей компании",
+                aboutDesc1: "Основанный в 2023 году, USDT Project является ведущим новатором в области решений для криптовалютного арбитража на основе ИИ. Наша команда экспертов по блокчейну, финансовых аналитиков и специалистов по ИИ разработала собственную торговую систему, которая обеспечивает стабильную доходность при соблюдении высочайших стандартов безопасности.",
+                aboutDesc2: "Наша миссия — демократизировать доступ к сложным торговым стратегиям с помощью искусственного интеллекта, делая прибыльные криптоинвестиции доступными для всех."
+            },
+            hi: {
+                pageTitle: "कंपनी प्रोफाइल",
+                homeLabel: "होम",
+                plansLabel: "योजनाएं",
+                teamLabel: "टीम",
+                meLabel: "मैं",
+                intro1: "📊 <strong>USDT प्रोजेक्ट</strong> — दैनिक क्रिप्टो रिटर्न के लिए AI-संचालित आर्बिट्रेज प्लेटफॉर्म",
+                intro2: "USDT प्रोजेक्ट एक अग्रणी डिजिटल एसेट प्लेटफॉर्म है जिसे निवेशकों को बिनेंस, OKX, हुओबी और अन्य प्रमुख क्रिप्टोकरेंसी एक्सचेंजों पर स्ट्रैटेजिक आर्बिट्रेज ट्रेडिंग के माध्यम से स्थिर दैनिक लाभ कमाने में मदद करने के लिए डिज़ाइन किया गया है।",
+                intro3: "शक्तिशाली आर्टिफिशियल इंटेलिजेंस (AI) एल्गोरिदम का उपयोग करके, प्लेटफॉर्म विभिन्न एक्सचेंजों पर समान क्रिप्टो संपत्तियों के बीच रीयल-टाइम मूल्य अंतर की पहचान करता है। AI स्वचालित, उच्च-आवृत्ति ट्रेडों को निष्पादित करता है - अद्वितीय गति, सटीकता और स्थिरता के साथ लाभ कैप्चर करता है।",
+                howItWorks: "🔍 यह कैसे काम करता है",
+                howItWorksDesc: "जब निवेशक प्लेटफॉर्म पर फंड जमा करते हैं, तो उनकी संपत्ति एक स्मार्ट लिक्विडिटी इंजन में पूल की जाती है। AI रीयल टाइम में कई वैश्विक एक्सचेंजों पर सैकड़ों ट्रेडिंग जोड़ियों को स्कैन करता है, आर्बिट्रेज अवसरों की पहचान करता है और स्वचालित रूप से ट्रेड निष्पादित करता है।",
+                howItWorksDesc2: "लाभ तो दैनिक रूप से निवेशकों के साथ साझा किए जाते हैं, उनके चुने हुए स्ट्रैटेजिक AI निवेश योजना के आधार पर। ट्रेडिंग ज्ञान की आवश्यकता नहीं है।",
+                keyFeatures: "⚙️ प्रमुख विशेषताएं और लाभ",
+                featuresList: [
+                    "✅ शीर्ष एक्सचेंजों पर AI-संचालित आर्बिट्रेज इंजन",
+                    "✅ गारंटीकृत दैनिक लाभ वितरण",
+                    "✅ किसी भी समय फंड निकालें — पूर्ण तरलता",
+                    "✅ सुरक्षित, विकेंद्रीकृत वॉलेट एकीकरण",
+                    "✅ पारदर्शी लेनदेन लॉग",
+                    "✅ स्वचालित स्मार्ट कॉन्ट्रैक्ट निष्पादन",
+                    "✅ कोई अनुभव या सक्रिय प्रबंधन आवश्यक नहीं",
+                    "✅ मोबाइल और डेस्कटॉप प्लेटफॉर्म एक्सेस"
+                ],
+                featureNote: "💡 पूरी तरह से स्वचालित, 24/7 लाभ उत्पादन — ब्लॉकचेन और AI द्वारा संचालित।",
+                investmentPlans: "स्ट्रैटेजिक AI निवेश योजनाएं और प्रोजेक्टेड रिटर्न (90-दिन चक्र)",
+                plansList: [
+                    "📤 <strong>स्टार्टर योजना:</strong><br>निवेश सीमा: 15 USDT<br>दैनिक रिटर्न दर: 15.0%",
+                    "📤 <strong>ग्रोथ योजना:</strong><br>निवेश सीमा: 99 USDT<br>दैनिक रिटर्न दर: 16.0%",
+                    "📤 <strong>प्रो योजना:</strong><br>निवेश सीमा: 499 USDT<br>दैनिक रिटर्न दर: 17.0%",
+                    "📤 <strong>एलीट योजना:</strong><br>निवेश सीमा: 1999 USDT<br>दैनिक रिटर्न दर: 18%",
+                    "📤 <strong>प्रीमियम योजना:</strong><br>निवेश सीमा: 9999 USDT<br>दैनिक रिटर्न दर: 20.0%",
+                    "📤 <strong>टाइटन योजना:</strong><br>निवेश सीमा: 19999 USDT<br>दैनिक रिटर्न दर: 22.0%",
+                    "📤 <strong>एपेक्स योजना:</strong><br>निवेश सीमा: 100,000 USDT और उससे अधिक<br>दैनिक रिटर्न दर: 25%"
+                ],
+                plansNote: "ये योजनाएं निवेशकों को अपने बजट और जोखिम सहनशीलता के अनुसार चुनने की अनुमति देती हैं, जिसमें रिटर्न की गणना और संयोजन 90-दिन के निवेश चक्र पर दैनिक आधार पर किया जाता है। सिस्टम पूरी तरह से स्वचालित है, जिसमें किसी मैनुअल हस्तक्षेप की आवश्यकता नहीं होती है, जिससे आसानी से निष्क्रिय आय उत्पन्न होती है।",
+                referralTitle: "👥 मल्टी-लेवल रेफरल और प्रमोशन रिवार्ड्स",
+                referralDesc: "निवेशकों का नेटवर्क बनाकर अधिक कमाएं। हमारा 3-स्तरीय आय मॉडल आपको निष्क्रिय रूप से आय बढ़ाने की अनुमति देता है।",
+                commissionTiers: "💸 <strong>कमीशन टियर्स:</strong><br>🔹 लेवल 1 (डायरेक्ट रेफरल): 10%<br>🔹 लेवल 2 (इनडायरेक्ट रेफरल): 3%<br>🔹 लेवल 3 (एक्सटेंडेड रेफरल): 2%",
+                referralNote: "रेफरल आय तुरंत भुगतान की जाती है और किसी भी समय निकाली जा सकती है।",
+                promotions: "🎁 <strong>प्रमोशन और नेटवर्क प्रोत्साहन:</strong><br>🎉 5 उपयोगकर्ताओं को आमंत्रित करें और एक विशेष उपहार पैकेज अनलॉक करें<br>🎯 उच्च रेफरल जमा = बड़े बोनस<br>📈 अपनी टीम को बढ़ाकर उच्च योजनाओं में तेजी से आगे बढ़ें<br>🏆 शीर्ष आमंत्रकों को मासिक रूप से कैशबैक पुरस्कारों के साथ प्रदर्शित किया जाता है",
+                networkGrowth: "इस प्रणाली में, नेटवर्क वृद्धि का मतलब घातीय कमाई है।",
+                accountParams: "💼 खाता और लेनदेन पैरामीटर",
+                paramsList: [
+                    "न्यूनतम जमा: 10 USDT",
+                    "न्यूनतम निकासी: 1 USDT",
+                    "निकासी आवृत्ति: दैनिक (किसी भी समय)",
+                    "निकासी शुल्क: 0%",
+                    "वॉलेट समर्थन: TRC20 / ERC20 / BEP20 संगत"
+                ],
+                stakingNote: "<strong>मैनुअल स्टेकिंग आवश्यक:</strong> नहीं",
+                securityTitle: "🔐 सुरक्षा और पारदर्शिता",
+                securityList: [
+                    "✅ AI-संचालित जोखिम नियंत्रण एल्गोरिदम",
+                    "✅ स्व-संरक्षण के लिए वॉलेट बाइंडिंग",
+                    "✅ एंड-टू-एंड स्वचालित लेनदेन",
+                    "✅ पारदर्शी फंड मूवमेंट डैशबोर्ड",
+                    "✅ आय ट्रैकर के माध्यम से दैनिक लाभ दृश्यता",
+                    "✅ मल्टीलेयर एन्क्रिप्शन और DDoS सुरक्षा"
+                ],
+                securityNote: "आपके फंड, आपका नियंत्रण — कभी भी तीसरे पक्ष की पहुंच नहीं।",
+                gettingStarted: "🛠 5 चरणों में आरंभ करें",
+                stepsList: [
+                    "पंजीकरण करें और अपना निःशुल्क खाता बनाएं",
+                    "अपना TRC20-संगत वॉलेट बाइंड करें",
+                    "अपने निवेश के आधार पर एक स्ट्रैटेजिक AI निवेश योजना चुनें",
+                    "AI सिस्टम को स्वायत्त रूप से संचालित होने दें, दैनिक रिटर्न उत्पन्न करें",
+                    "अपनी निष्क्रिय नेटवर्क आय बढ़ाने के लिए दूसरों को आमंत्रित करें"
+                ],
+                whyJoin: "🌍 अभी USDT प्रोजेक्ट में क्यों शामिल हों?",
+                benefitsList: "🔥 स्वचालित आर्बिट्रेज का मतलब दैनिक चक्रवृद्धि लाभ<br>🌐 तेजी से बढ़ते वैश्विक उपयोगकर्ता आधार द्वारा विश्वसनीय<br>🧠 कोई तकनीकी अनुभव आवश्यक नहीं<br>💹 शून्य प्रयास के साथ निष्क्रिय रूप से कमाएं<br>⏳ प्रारंभिक निवेशक योजनाओं के माध्यम से तेजी से आगे बढ़ते हैं<br>🎯 पारदर्शी, कुशल, सुरक्षित और स्केलेबल",
+                finalNote: "यहां प्रत्येक निवेश सिर्फ एक जमा नहीं है — यह स्वचालित वित्तीय स्वतंत्रता का प्रवेश द्वार है।",
+                aboutTitle: "हमारी कंपनी के बारे में",
+                aboutDesc1: "2023 में स्थापित, USDT प्रोजेक्ट AI-संचालित क्रिप्टोकरेंसी आर्बिट्रेज समाधानों में एक अग्रणी नवप्रवर्तक है। ब्लॉकचेन विशेषज्ञों, वित्तीय विश्लेषकों और AI विशेषज्ञों की हमारी टीम ने एक स्वामित्व वाली ट्रेडिंग प्रणाली विकसित की है जो उच्चतम सुरक्षा मानकों को बनाए रखते हुए स्थिर रिटर्न प्रदान करती है।",
+                aboutDesc2: "हमारा मिशन कृत्रिम बुद्धिमत्ता के माध्यम से परिष्कृत ट्रेडिंग रणनीतियों तक पहुंच को लोकतांत्रिक बनाना है, जिससे लाभदायक क्रिप्टो निवेश सभी के लिए सुलभ हो।"
+            },
+            zh: {
+                pageTitle: "公司简介",
+                homeLabel: "首页",
+                plansLabel: "计划",
+                teamLabel: "团队",
+                meLabel: "我的",
+                intro1: "📊 <strong>USDT 项目</strong> — AI驱动的加密货币套利平台，每日收益",
+                intro2: "USDT 项目是一个前瞻性的数字资产平台，旨在帮助投资者通过在币安、OKX、火币等主要加密货币交易所进行战略性套利交易，获得稳定的每日利润。",
+                intro3: "通过利用强大的人工智能（AI）算法，该平台实时识别不同交易所之间相同加密资产的价格差异。AI执行自动化高频交易，以无与伦比的速度、精度和一致性捕捉利润。",
+                howItWorks: "🔍 工作原理",
+                howItWorksDesc: "当投资者将资金存入平台时，他们的资产会汇集到一个智能流动性引擎中。AI实时扫描多个全球交易所的数百个交易对，精确定位套利机会并自动执行交易。",
+                howItWorksDesc2: "然后，利润根据投资者选择的战略AI投资计划每日分享给投资者。无需交易知识。",
+                keyFeatures: "⚙️ 主要特点和优势",
+                featuresList: [
+                    "✅ 顶级交易所的AI驱动套利引擎",
+                    "✅ 保证每日利润分配",
+                    "✅ 随时提取资金 — 完全流动性",
+                    "✅ 安全、去中心化的钱包集成",
+                    "✅ 透明的交易日志",
+                    "✅ 自动智能合约执行",
+                    "✅ 无需经验或主动管理",
+                    "✅ 移动和桌面平台访问"
+                ],
+                featureNote: "💡 完全自动化，24/7利润生成 — 由区块链和AI驱动。",
+                investmentPlans: "战略AI投资计划和预期回报（90天周期）",
+                plansList: [
+                    "📤 <strong>入门计划:</strong><br>投资范围: 15 USDT<br>每日回报率: 15.0%",
+                    "📤 <strong>成长计划:</strong><br>投资范围: 99 USDT<br>每日回报率: 16.0%",
+                    "📤 <strong>专业计划:</strong><br>投资范围: 499 USDT<br>每日回报率: 17.0%",
+                    "📤 <strong>精英计划:</strong><br>投资范围: 1999 USDT<br>每日回报率: 18%",
+                    "📤 <strong>高级计划:</strong><br>投资范围: 9999 USDT<br>每日回报率: 20.0%",
+                    "📤 <strong>泰坦计划:</strong><br>投资范围: 19999 USDT<br>每日回报率: 22.0%",
+                    "📤 <strong>巅峰计划:</strong><br>投资范围: 100,000 USDT及以上<br>每日回报率: 25%"
+                ],
+                plansNote: "这些计划允许投资者根据自己的预算和风险承受能力进行选择，回报在90天的投资周期内每日计算和复利。系统完全自动化，无需人工干预，实现轻松被动收入生成。",
+                referralTitle: "👥 多级推荐和促销奖励",
+                referralDesc: "通过建立投资者网络赚取更多。我们的3级收入模型让您被动地扩大收入。",
+                commissionTiers: "💸 <strong>佣金层级:</strong><br>🔹 1级（直接推荐）: 10%<br>🔹 2级（间接推荐）: 3%<br>🔹 3级（扩展推荐）: 2%",
+                referralNote: "推荐收入即时支付，可随时提取。",
+                promotions: "🎁 <strong>促销和网络激励:</strong><br>🎉 邀请5位用户解锁特别礼包<br>🎯 更高的推荐存款 = 更大的奖金<br>📈 通过发展团队更快晋升到更高计划<br>🏆 每月展示顶级邀请者并提供返现奖励",
+                networkGrowth: "在这个系统中，网络增长等于指数级收入。",
+                accountParams: "💼 账户和交易参数",
+                paramsList: [
+                    "最低存款: 10 USDT",
+                    "最低提款: 1 USDT",
+                    "提款频率: 每日（随时）",
+                    "提款费用: 0%",
+                    "钱包支持: 兼容 TRC20 / ERC20 / BEP20"
+                ],
+                stakingNote: "<strong>需要手动质押:</strong> 否",
+                securityTitle: "🔐 安全与透明",
+                securityList: [
+                    "✅ AI驱动的风险控制算法",
+                    "✅ 钱包绑定用于自我保管",
+                    "✅ 端到端自动化交易",
+                    "✅ 透明的资金流动仪表板",
+                    "✅ 通过收入追踪器每日查看利润",
+                    "✅ 多层加密和DDoS保护"
+                ],
+                securityNote: "您的资金，您的控制 — 绝无第三方访问。",
+                gettingStarted: "🛠 5步快速入门",
+                stepsList: [
+                    "注册并创建您的免费账户",
+                    "绑定您的TRC20兼容钱包",
+                    "根据您的投资选择战略AI投资计划",
+                    "让AI系统自主运行，生成每日回报",
+                    "邀请他人以增加您的被动网络收入"
+                ],
+                whyJoin: "🌍 为什么现在加入USDT项目？",
+                benefitsList: "🔥 自动化套利意味着每日复利<br>🌐 快速增长的国际用户群信任<br>🧠 无需技术经验<br>💹 零努力被动收入<br>⏳ 早期投资者更快晋升计划<br>🎯 透明、高效、安全和可扩展",
+                finalNote: "这里的每一项投资不仅仅是一次存款 — 它是通往自动化财务自由的大门。",
+                aboutTitle: "关于我们公司",
+                aboutDesc1: "USDT项目成立于2023年，是AI驱动的加密货币套利解决方案的领先创新者。我们的区块链专家、金融分析师和AI专家团队开发了一个专有交易系统，在保持最高安全标准的同时提供稳定的回报。",
+                aboutDesc2: "我们的使命是通过人工智能民主化对复杂交易策略的访问，使每个人都能进行有利可图的加密投资。"
+            }
+        };
+
+        // Check authentication
+        function checkAuth() {
+            const userDatabase = JSON.parse(localStorage.getItem('userDatabase')) || {};
+            const currentUser = localStorage.getItem('currentUser');
+            
+            if (!currentUser || !userDatabase[currentUser]) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Change language function
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const langData = translations[lang];
+            
+            // Update UI elements
+            document.getElementById('page-title').textContent = langData.pageTitle;
+            document.getElementById('home-label').textContent = langData.homeLabel;
+            document.getElementById('plans-label').textContent = langData.plansLabel;
+            document.getElementById('team-label').textContent = langData.teamLabel;
+            document.getElementById('me-label').textContent = langData.meLabel;
+            
+            // Update content
+            document.getElementById('intro1').innerHTML = langData.intro1;
+            document.getElementById('intro2').textContent = langData.intro2;
+            document.getElementById('intro3').textContent = langData.intro3;
+            document.getElementById('howItWorks').textContent = langData.howItWorks;
+            document.getElementById('howItWorksDesc').textContent = langData.howItWorksDesc;
+            document.getElementById('howItWorksDesc2').textContent = langData.howItWorksDesc2;
+            document.getElementById('keyFeatures').textContent = langData.keyFeatures;
+            
+            const featuresList = document.getElementById('featuresList');
+            featuresList.innerHTML = '';
+            langData.featuresList.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = item;
+                featuresList.appendChild(li);
+            });
+            
+            document.getElementById('featureNote').innerHTML = langData.featureNote;
+            document.getElementById('investmentPlans').textContent = langData.investmentPlans;
+            
+            const plansList = document.getElementById('plansList');
+            plansList.innerHTML = '';
+            langData.plansList.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = item;
+                plansList.appendChild(li);
+            });
+            
+            document.getElementById('plansNote').textContent = langData.plansNote;
+            document.getElementById('referralTitle').textContent = langData.referralTitle;
+            document.getElementById('referralDesc').textContent = langData.referralDesc;
+            document.getElementById('commissionTiers').innerHTML = langData.commissionTiers;
+            document.getElementById('referralNote').innerHTML = langData.referralNote;
+            document.getElementById('promotions').innerHTML = langData.promotions;
+            document.getElementById('networkGrowth').textContent = langData.networkGrowth;
+            document.getElementById('accountParams').textContent = langData.accountParams;
+            
+            const paramsList = document.getElementById('paramsList');
+            paramsList.innerHTML = '';
+            langData.paramsList.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                paramsList.appendChild(li);
+            });
+            
+            document.getElementById('stakingNote').innerHTML = langData.stakingNote;
+            document.getElementById('securityTitle').textContent = langData.securityTitle;
+            
+            const securityList = document.getElementById('securityList');
+            securityList.innerHTML = '';
+            langData.securityList.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = item;
+                securityList.appendChild(li);
+            });
+            
+            document.getElementById('securityNote').textContent = langData.securityNote;
+            document.getElementById('gettingStarted').textContent = langData.gettingStarted;
+            
+            const stepsList = document.getElementById('stepsList');
+            stepsList.innerHTML = '';
+            langData.stepsList.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${index + 1}. ${item}`;
+                stepsList.appendChild(li);
+            });
+            
+            document.getElementById('whyJoin').textContent = langData.whyJoin;
+            document.getElementById('benefitsList').innerHTML = langData.benefitsList;
+            document.getElementById('finalNote').textContent = langData.finalNote;
+            document.getElementById('aboutTitle').textContent = langData.aboutTitle;
+            document.getElementById('aboutDesc1').textContent = langData.aboutDesc1;
+            document.getElementById('aboutDesc2').textContent = langData.aboutDesc2;
+            
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication on page load
+            checkAuth();
+            
+            // Set up language selector
+            const languageSelector = document.getElementById('language-selector');
+            
+            // Load saved language preference
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            languageSelector.value = savedLanguage;
+            changeLanguage(savedLanguage);
+            
+            // Add event listener for language change
+            languageSelector.addEventListener('change', function() {
+                changeLanguage(this.value);
+            });
+        });
+    </script>
+</body>
+</html>

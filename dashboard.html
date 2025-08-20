@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CryptoPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            padding-bottom: 80px;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            filter: brightness(0) invert(0.8);
+        }
+        
+        .company-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .telegram-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin-right: 15px;
+            filter: invert(88%) sepia(21%) saturate(428%) hue-rotate(162deg) brightness(105%) contrast(89%);
+            transition: transform 0.2s;
+        }
+        
+        .telegram-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .language-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #e0e0e0;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        /* Slideshow Styles */
+        .slideshow {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            margin-top: 70px;
+        }
+        
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #333;
+            margin: 10px;
+            border-radius: 10px;
+            border: 1px solid #444;
+        }
+        
+        .action-square {
+            width: 80px;
+            height: 80px;
+            background-color: #87ceeb;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #1e1e1e;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .action-square:hover {
+            background-color: #6cb4d8;
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .action-icon {
+            font-size: 30px;
+        }
+        
+        .action-label {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+        
+        /* Assets Section */
+        .assets-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #333;
+            margin: 10px;
+            border-radius: 10px;
+            border: 1px solid #444;
+        }
+        
+        .assets-box {
+            flex: 1;
+            padding: 15px;
+        }
+        
+        .assets-title {
+            font-size: 16px;
+            color: #87ceeb;
+            margin-bottom: 10px;
+        }
+        
+        .assets-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+        
+        /* Info Boxes */
+        .info-boxes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0 20px;
+            margin: 10px 0;
+        }
+        
+        .info-box {
+            padding: 15px;
+            background-color: #333;
+            border-radius: 10px;
+            border: 1px solid #444;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #e0e0e0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .info-box:hover {
+            background-color: #444;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Bottom Menu */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            width: 25%;
+        }
+        
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #333;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #87ceeb;
+            font-size: 16px;
+        }
+        
+        .menu-label {
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+        
+        .menu-item.active .menu-icon {
+            background-color: #87ceeb;
+            color: #1e1e1e;
+        }
+        
+        .menu-item.active .menu-label {
+            color: #87ceeb;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #87ceeb;
+            color: #1e1e1e;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 99;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-to-top:hover {
+            background-color: #6cb4d8;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="https://via.placeholder.com/40" alt="Company Logo" class="logo">
+            <div class="company-name" id="company-name">CryptoPro</div>
+        </div>
+        <div class="header-right">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon" id="telegram-icon">
+           <select class="language-selector" id="language-selector">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="ru">Русский</option>
+                <option value="hi">हिन्दी</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Slideshow Section with Local Images -->
+    <div class="slideshow">
+        <div class="slide active" style="background-image: url('ong/1.png')"></div>
+        <div class="slide" style="background-image: url('ong/2.png')"></div>
+        <div class="slide" style="background-image: url('ong/4.png')"></div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <div class="action-container" onclick="window.location.href='recharge.html'">
+            <div class="action-square">
+                <div class="action-icon">↑</div>
+            </div>
+            <div class="action-label" id="recharge-label">Recharge</div>
+        </div>
+        <div class="action-container" onclick="window.location.href='withdraw.html'">
+            <div class="action-square">
+                <div class="action-icon">↓</div>
+            </div>
+            <div class="action-label" id="withdraw-label">Withdraw</div>
+        </div>
+        <div class="action-container" onclick="window.location.href='invite.html'">
+            <div class="action-square">
+                <div class="action-icon">+</div>
+            </div>
+            <div class="action-label" id="invite-label">Invite Friends</div>
+        </div>
+    </div>
+
+    <!-- Assets Section -->
+    <div class="assets-section">
+        <div class="assets-box">
+            <div class="assets-title" id="total-assets-label">Total Assets</div>
+            <div class="assets-amount">0.00 USDT</div>
+        </div>
+        <div class="assets-box">
+            <div class="assets-title" id="active-assets-label">Active Assets</div>
+            <div class="assets-amount">0.00 USDT</div>
+        </div>
+    </div>
+
+    <!-- Info Boxes -->
+    <div class="info-boxes">
+        <div class="info-box" onclick="window.location.href='company-profile.html'" id="company-profile-label">Company Profile</div>
+        <div class="info-box" onclick="window.location.href='recharge-tutorial.html'" id="how-to-recharge-label">How to RECHARGE</div>
+        <div class="info-box" onclick="window.location.href='how-to-withdraw.html'" id="how-to-withdraw-label">How to WITHDRAW</div>
+    </div>
+
+    <!-- Bottom Menu -->
+    <nav class="bottom-menu">
+        <div class="menu-item active" onclick="window.location.href='dashboard.html'">
+            <div class="menu-icon">H</div>
+            <div class="menu-label" id="home-label">Home</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='plans.html'">
+            <div class="menu-icon">P</div>
+            <div class="menu-label" id="plans-label">Plans</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='invite.html'">
+            <div class="menu-icon">T</div>
+            <div class="menu-label" id="team-label">Team</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='me.html'">
+            <div class="menu-icon">M</div>
+            <div class="menu-label" id="me-label">Me</div>
+        </div>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="back-to-top">↑</div>
+
+    <script>
+        // Multi-language support
+        const translations = {
+            en: {
+                companyName: "CryptoPro",
+                rechargeLabel: "Recharge",
+                withdrawLabel: "Withdraw",
+                inviteLabel: "Invite Friends",
+                totalAssetsLabel: "Total Assets",
+                activeAssetsLabel: "Active Assets",
+                companyProfileLabel: "Company Profile",
+                howToRechargeLabel: "How to RECHARGE",
+                howToWithdrawLabel: "How to WITHDRAW",
+                homeLabel: "Home",
+                plansLabel: "Plans",
+                teamLabel: "Team",
+                meLabel: "Me"
+            },
+            es: {
+                companyName: "CryptoPro",
+                rechargeLabel: "Recargar",
+                withdrawLabel: "Retirar",
+                inviteLabel: "Invitar Amigos",
+                totalAssetsLabel: "Activos Totales",
+                activeAssetsLabel: "Activos Activos",
+                companyProfileLabel: "Perfil de la Empresa",
+                howToRechargeLabel: "Cómo RECARGAR",
+                howToWithdrawLabel: "Cómo RETIRAR",
+                homeLabel: "Inicio",
+                plansLabel: "Planes",
+                teamLabel: "Equipo",
+                meLabel: "Yo"
+            },
+            fr: {
+                companyName: "CryptoPro",
+                rechargeLabel: "Recharger",
+                withdrawLabel: "Retirer",
+                inviteLabel: "Inviter des Amis",
+                totalAssetsLabel: "Actifs Totaux",
+                activeAssetsLabel: "Actifs Actifs",
+                companyProfileLabel: "Profil de l'Entreprise",
+                howToRechargeLabel: "Comment RECHARGER",
+                howToWithdrawLabel: "Comment RETIRER",
+                homeLabel: "Accueil",
+                plansLabel: "Plans",
+                teamLabel: "Équipe",
+                meLabel: "Moi"
+            },
+            de: {
+                companyName: "CryptoPro",
+                rechargeLabel: "Aufladen",
+                withdrawLabel: "Abheben",
+                inviteLabel: "Freunde Einladen",
+                totalAssetsLabel: "Gesamtvermögen",
+                activeAssetsLabel: "Aktive Vermögenswerte",
+                companyProfileLabel: "Firmenprofil",
+                howToRechargeLabel: "Wie man AUFLADET",
+                howToWithdrawLabel: "Wie man ABHEBT",
+                homeLabel: "Startseite",
+                plansLabel: "Pläne",
+                teamLabel: "Team",
+                meLabel: "Ich"
+            },
+            ru: {
+                companyName: "CryptoPro",
+                rechargeLabel: "Пополнить",
+                withdrawLabel: "Вывести",
+                inviteLabel: "Пригласить Друзей",
+                totalAssetsLabel: "Всего Активов",
+                activeAssetsLabel: "Активные Активы",
+                companyProfileLabel: "Профиль Компании",
+                howToRechargeLabel: "Как ПОПОЛНИТЬ",
+                howToWithdrawLabel: "Как ВЫВЕСТИ",
+                homeLabel: "Главная",
+                plansLabel: "Планы",
+                teamLabel: "Команда",
+                meLabel: "Я"
+            },
+            hi: {
+                companyName: "CryptoPro",
+                rechargeLabel: "रिचार्ज",
+                withdrawLabel: "निकालना",
+                inviteLabel: "दोस्तों को आमंत्रित करें",
+                totalAssetsLabel: "कुल संपत्ति",
+                activeAssetsLabel: "सक्रिय संपत्ति",
+                companyProfileLabel: "कंपनी प्रोफाइल",
+                howToRechargeLabel: "कैसे रिचार्ज करें",
+                howToWithdrawLabel: "कैसे निकालना है",
+                homeLabel: "होम",
+                plansLabel: "योजनाएं",
+                teamLabel: "टीम",
+                meLabel: "मैं"
+            },
+            zh: {
+                companyName: "CryptoPro",
+                rechargeLabel: "充值",
+                withdrawLabel: "提现",
+                inviteLabel: "邀请朋友",
+                totalAssetsLabel: "总资产",
+                activeAssetsLabel: "活跃资产",
+                companyProfileLabel: "公司简介",
+                howToRechargeLabel: "如何充值",
+                howToWithdrawLabel: "如何提现",
+                homeLabel: "首页",
+                plansLabel: "计划",
+                teamLabel: "团队",
+                meLabel: "我的"
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        // Change language function
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const t = translations[lang];
+            
+            // Update all text elements
+            document.getElementById('company-name').textContent = t.companyName;
+            document.getElementById('recharge-label').textContent = t.rechargeLabel;
+            document.getElementById('withdraw-label').textContent = t.withdrawLabel;
+            document.getElementById('invite-label').textContent = t.inviteLabel;
+            document.getElementById('total-assets-label').textContent = t.totalAssetsLabel;
+            document.getElementById('active-assets-label').textContent = t.activeAssetsLabel;
+            document.getElementById('company-profile-label').textContent = t.companyProfileLabel;
+            document.getElementById('how-to-recharge-label').textContent = t.howToRechargeLabel;
+            document.getElementById('how-to-withdraw-label').textContent = t.howToWithdrawLabel;
+            document.getElementById('home-label').textContent = t.homeLabel;
+            document.getElementById('plans-label').textContent = t.plansLabel;
+            document.getElementById('team-label').textContent = t.teamLabel;
+            document.getElementById('me-label').textContent = t.meLabel;
+            
+            document.documentElement.lang = lang;
+        }
+
+        // Check authentication
+        function checkAuth() {
+            const userDatabase = JSON.parse(localStorage.getItem('userDatabase')) || {};
+            const currentUser = localStorage.getItem('currentUser');
+            
+            if (!currentUser || !userDatabase[currentUser]) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Slideshow functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication on page load
+            checkAuth();
+            
+            // Telegram icon click handler
+            document.getElementById('telegram-icon').addEventListener('click', function() {
+                window.open('https://t.me/yourcompanychannel', '_blank');
+            });
+            
+            // Language selector change handler
+            document.getElementById('language-selector').addEventListener('change', function() {
+                changeLanguage(this.value);
+            });
+            
+            // Back to top button functionality
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Change slide every 3 seconds
+            setInterval(nextSlide, 3000);
+            
+            // Initial setup
+            changeLanguage(currentLanguage);
+        });
+    </script>
+</body>
+</html>

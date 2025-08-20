@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw - CryptoPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            padding-bottom: 80px;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .back-button {
+            font-size: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+            color: #87ceeb;
+        }
+        
+        .page-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e0e0e0;
+            flex: 1;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+       .telegram-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin-right: 15px;
+            filter: invert(88%) sepia(21%) saturate(428%) hue-rotate(162deg) brightness(105%) contrast(89%);
+            transition: transform 0.2s;
+        }
+        
+        .telegram-icon:hover {
+            transform: scale(1.1);
+        }
+        
+         .language-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #e0e0e0;
+            cursor: pointer;
+            outline: none;
+        }
+        /* Content Styles */
+        .content {
+            padding: 80px 20px 20px;
+        }
+        
+        .withdraw-section {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-title {
+            color: #a0a0a0;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .amount {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-method {
+            flex: 1;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #444;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .payment-method.selected {
+            border-color: #87ceeb;
+            background-color: #3a3a3a;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #444;
+            border: 1px solid #555;
+            color: #e0e0e0;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #87ceeb;
+        }
+        
+        .fee-row, .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #444;
+        }
+        
+        .fee-label, .receipt-label {
+            color: #a0a0a0;
+            font-size: 14px;
+        }
+        
+        .fee-value {
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+        
+        .receipt-value {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .confirm-button {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #87ceeb;
+            color: #1e1e1e;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .confirm-button:hover {
+            background-color: #6cb8d8;
+        }
+        
+        .disclaimer {
+            margin-top: 30px;
+            color: #a0a0a0;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.5;
+        }
+        
+        /* Bottom Menu */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #333;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #87ceeb;
+        }
+        
+        .menu-label {
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="back-button" id="back-button">&#x2039;</div>
+        <div class="page-title">Withdraw</div>
+        <div class="header-right">
+             <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon" id="telegram-icon">
+           <select class="language-selector" id="language-selector">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="ru">Русский</option>
+                <option value="hi">हिन्दी</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <div class="content">
+        <div class="withdraw-section">
+            <div class="section-title" data-translate="withdrawal_amount">Withdrawal Amount</div>
+            <div class="amount">0.00 USDT</div>
+            
+            <div class="section-title" data-translate="payment_method">Payment Method</div>
+            <div class="payment-methods">
+                <div class="payment-method" id="bep20-method">Bep20</div>
+                <div class="payment-method" id="trc20-method">Trc20</div>
+            </div>
+            
+            <input type="text" class="input-field" id="amount-input" placeholder="Enter withdrawal amount (Min: 10.00 USDT)" data-placeholder-key="enter_amount">
+            <input type="text" class="input-field" id="address-input" placeholder="Withdrawal address" data-placeholder-key="withdrawal_address">
+            <input type="password" class="input-field" id="password-input" placeholder="Password" data-placeholder-key="password">
+            
+            <div class="fee-row">
+                <div class="fee-label" data-translate="handling_fee">Handling fee</div>
+                <div class="fee-value">0.00 USDT</div>
+            </div>
+            
+            <div class="receipt-row">
+                <div class="receipt-label" data-translate="you_will_receive">You will receive</div>
+                <div class="receipt-value" id="receipt-amount">0.00 USDT</div>
+            </div>
+            
+            <button class="confirm-button" id="confirm-button" data-translate="confirm_withdrawal">Confirm Withdrawal</button>
+        </div>
+        
+        <div class="disclaimer" data-translate="withdrawal_disclaimer">
+            Please ensure the withdrawal address matches the selected network. Withdrawals may take up to 24 hours to process.
+        </div>
+    </div>
+
+    <!-- Bottom Menu -->
+    <nav class="bottom-menu">
+        <div class="menu-item" onclick="window.location.href='dashboard.html'">
+            <div class="menu-icon">H</div>
+            <div class="menu-label" data-translate="home">Home</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='plans.html'">
+            <div class="menu-icon">P</div>
+            <div class="menu-label" data-translate="plans">Plans</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='invite.html'">
+            <div class="menu-icon">T</div>
+            <div class="menu-label" data-translate="team">Team</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='me.html'">
+            <div class="menu-icon">M</div>
+            <div class="menu-label" data-translate="me">Me</div>
+        </div>
+    </nav>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                withdrawal_amount: "Withdrawal Amount",
+                payment_method: "Payment Method",
+                enter_amount: "Enter withdrawal amount (Min: 10.00 USDT)",
+                withdrawal_address: "Withdrawal address",
+                password: "Password",
+                handling_fee: "Handling fee",
+                you_will_receive: "You will receive",
+                confirm_withdrawal: "Confirm Withdrawal",
+                withdrawal_disclaimer: "Please ensure the withdrawal address matches the selected network. Withdrawals may take up to 24 hours to process.",
+                home: "Home",
+                plans: "Plans",
+                team: "Team",
+                me: "Me"
+            },
+            es: {
+                withdrawal_amount: "Cantidad a Retirar",
+                payment_method: "Método de Pago",
+                enter_amount: "Ingrese el monto a retirar (Mín: 10.00 USDT)",
+                withdrawal_address: "Dirección de retiro",
+                password: "Contraseña",
+                handling_fee: "Tarifa de manejo",
+                you_will_receive: "Recibirás",
+                confirm_withdrawal: "Confirmar Retiro",
+                withdrawal_disclaimer: "Asegúrese de que la dirección de retiro coincida con la red seleccionada. Los retiros pueden tardar hasta 24 horas en procesarse.",
+                home: "Inicio",
+                plans: "Planes",
+                team: "Equipo",
+                me: "Yo"
+            },
+            fr: {
+                withdrawal_amount: "Montant du retrait",
+                payment_method: "Méthode de paiement",
+                enter_amount: "Entrez le montant du retrait (Min: 10.00 USDT)",
+                withdrawal_address: "Adresse de retrait",
+                password: "Mot de passe",
+                handling_fee: "Frais de traitement",
+                you_will_receive: "Vous recevrez",
+                confirm_withdrawal: "Confirmer le retrait",
+                withdrawal_disclaimer: "Veuillez vous assurer que l'adresse de retrait correspond au réseau sélectionné. Les retraits peuvent prendre jusqu'à 24 heures à être traités.",
+                home: "Accueil",
+                plans: "Plans",
+                team: "Équipe",
+                me: "Moi"
+            },
+            de: {
+                withdrawal_amount: "Auszahlungsbetrag",
+                payment_method: "Zahlungsmethode",
+                enter_amount: "Geben Sie den Auszahlungsbetrag ein (Min: 10.00 USDT)",
+                withdrawal_address: "Auszahlungsadresse",
+                password: "Passwort",
+                handling_fee: "Bearbeitungsgebühr",
+                you_will_receive: "Sie erhalten",
+                confirm_withdrawal: "Auszahlung bestätigen",
+                withdrawal_disclaimer: "Bitte stellen Sie sicher, dass die Auszahlungsadresse mit dem ausgewählten Netzwerk übereinstimmt. Auszahlungen können bis zu 24 Stunden dauern.",
+                home: "Startseite",
+                plans: "Pläne",
+                team: "Team",
+                me: "Ich"
+            },
+            ru: {
+                withdrawal_amount: "Сумма вывода",
+                payment_method: "Способ оплаты",
+                enter_amount: "Введите сумму вывода (Мин: 10.00 USDT)",
+                withdrawal_address: "Адрес вывода",
+                password: "Пароль",
+                handling_fee: "Комиссия за обработку",
+                you_will_receive: "Вы получите",
+                confirm_withdrawal: "Подтвердить вывод",
+                withdrawal_disclaimer: "Убедитесь, что адрес вывода соответствует выбранной сети. Вывод средств может занять до 24 часов.",
+                home: "Главная",
+                plans: "Планы",
+                team: "Команда",
+                me: "Я"
+            },
+            hi: {
+                withdrawal_amount: "निकासी राशि",
+                payment_method: "भुगतान विधि",
+                enter_amount: "निकासी राशि दर्ज करें (न्यूनतम: 10.00 USDT)",
+                withdrawal_address: "निकासी पता",
+                password: "पासवर्ड",
+                handling_fee: "प्रसंस्करण शुल्क",
+                you_will_receive: "आपको प्राप्त होगा",
+                confirm_withdrawal: "निकासी की पुष्टि करें",
+                withdrawal_disclaimer: "कृपया सुनिश्चित करें कि निकासी पता चयनित नेटवर्क से मेल खाता है। निकासी में 24 घंटे तक का समय लग सकता है।",
+                home: "होम",
+                plans: "योजनाएँ",
+                team: "टीम",
+                me: "मैं"
+            },
+            zh: {
+                withdrawal_amount: "提现金额",
+                payment_method: "支付方式",
+                enter_amount: "输入提现金额 (最低: 10.00 USDT)",
+                withdrawal_address: "提现地址",
+                password: "密码",
+                handling_fee: "手续费",
+                you_will_receive: "您将收到",
+                confirm_withdrawal: "确认提现",
+                withdrawal_disclaimer: "请确保提现地址与所选网络匹配。提现可能需要最多24小时处理。",
+                home: "首页",
+                plans: "计划",
+                team: "团队",
+                me: "我"
+            }
+        };
+
+        // Back button functionality
+        document.getElementById('back-button').addEventListener('click', function() {
+            window.location.href = 'me.html';
+        });
+
+        // Change language function
+        function changeLanguage(lang) {
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update all placeholder texts
+            document.querySelectorAll('[data-placeholder-key]').forEach(element => {
+                const key = element.getAttribute('data-placeholder-key');
+                if (translations[lang] && translations[lang][key]) {
+                    element.placeholder = translations[lang][key];
+                    
+                    // Update payment method placeholder if needed
+                    if (element.id === 'address-input') {
+                        const selectedMethod = document.querySelector('.payment-method.selected').id;
+                        if (selectedMethod === 'bep20-method') {
+                            element.placeholder = translations[lang].withdrawal_address + " (Bep20)";
+                        } else {
+                            element.placeholder = translations[lang].withdrawal_address + " (Trc20)";
+                        }
+                    }
+                }
+            });
+            
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+        
+        // Language selector functionality
+        document.getElementById('language-selector').addEventListener('change', function() {
+            const lang = this.value;
+            changeLanguage(lang);
+        });
+        
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            document.getElementById('language-selector').value = savedLang;
+            changeLanguage(savedLang);
+            checkAuth();
+        });
+        
+        // Payment method selection
+        const bep20Method = document.getElementById('bep20-method');
+        const trc20Method = document.getElementById('trc20-method');
+        const addressInput = document.getElementById('address-input');
+        
+        bep20Method.addEventListener('click', function() {
+            bep20Method.classList.add('selected');
+            trc20Method.classList.remove('selected');
+            const lang = localStorage.getItem('preferredLanguage') || 'en';
+            addressInput.placeholder = translations[lang].withdrawal_address + " (Bep20)";
+        });
+        
+        trc20Method.addEventListener('click', function() {
+            trc20Method.classList.add('selected');
+            bep20Method.classList.remove('selected');
+            const lang = localStorage.getItem('preferredLanguage') || 'en';
+            addressInput.placeholder = translations[lang].withdrawal_address + " (Trc20)";
+        });
+        
+        // Default selection
+        bep20Method.click();
+        
+        // Update receipt amount when amount changes
+        const amountInput = document.getElementById('amount-input');
+        const receiptAmount = document.getElementById('receipt-amount');
+        
+        amountInput.addEventListener('input', function() {
+            const amount = amountInput.value || '0.00';
+            receiptAmount.textContent = amount + ' USDT';
+        });
+        
+        // Confirm button functionality
+        document.getElementById('confirm-button').addEventListener('click', function() {
+            const amount = amountInput.value;
+            const address = addressInput.value;
+            const password = document.getElementById('password-input').value;
+            const selectedMethod = bep20Method.classList.contains('selected') ? 'Bep20' : 'Trc20';
+            
+            // Basic validation
+            if (!amount || isNaN(amount)) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            if (parseFloat(amount) < 10) {
+                alert('Minimum withdrawal amount is 10.00 USDT');
+                return;
+            }
+            
+            if (!address) {
+                alert('Please enter a withdrawal address');
+                return;
+            }
+            
+            if (!password) {
+                alert('Please enter your password');
+                return;
+            }
+            
+            // Check password against stored user data
+            const userDatabase = JSON.parse(localStorage.getItem('userDatabase')) || {};
+            const currentUser = localStorage.getItem('currentUser');
+            
+            if (!currentUser || !userDatabase[currentUser]) {
+                alert('Session expired. Please login again.');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            if (userDatabase[currentUser].password !== password) {
+                alert('Incorrect password');
+                return;
+            }
+            
+            // Here you would normally send the withdrawal request to your backend
+            alert(`Withdrawal request for ${amount} USDT via ${selectedMethod} to address ${address} has been submitted.`);
+            
+            // Reset form
+            amountInput.value = '';
+            addressInput.value = '';
+            document.getElementById('password-input').value = '';
+            receiptAmount.textContent = '0.00 USDT';
+        });
+        
+        // Check authentication
+        function checkAuth() {
+            const userDatabase = JSON.parse(localStorage.getItem('userDatabase')) || {};
+            const currentUser = localStorage.getItem('currentUser');
+            
+            if (!currentUser || !userDatabase[currentUser]) {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

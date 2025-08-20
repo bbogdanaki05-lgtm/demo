@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Records - CryptoPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            padding-bottom: 80px;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .back-button {
+            font-size: 24px;
+            color: #87ceeb;
+            cursor: pointer;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            filter: brightness(0) invert(0.8);
+        }
+        
+        .company-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .telegram-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin-right: 15px;
+            filter: invert(88%) sepia(21%) saturate(428%) hue-rotate(162deg) brightness(105%) contrast(89%);
+            transition: transform 0.2s;
+        }
+        
+        .telegram-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .language-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #e0e0e0;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
+            padding: 20px;
+        }
+        
+        /* Page Title */
+        .page-title {
+            font-size: 24px;
+            color: #87ceeb;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background-color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #444;
+        }
+        
+        .filter-button {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: none;
+            background-color: #444;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-button.active {
+            background-color: #87ceeb;
+            color: #1e1e1e;
+            font-weight: bold;
+        }
+        
+        /* Records List */
+        .records-list {
+            background-color: #333;
+            border-radius: 10px;
+            border: 1px solid #444;
+            overflow: hidden;
+            margin-bottom: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .record-item {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #444;
+        }
+        
+        .record-item:last-child {
+            border-bottom: none;
+        }
+        
+        .record-info {
+            flex: 1;
+        }
+        
+        .record-type {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .record-date {
+            font-size: 12px;
+            color: #aaa;
+        }
+        
+        .record-amount {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .amount-positive {
+            color: #4cd964; /* Green for deposits */
+        }
+        
+        .amount-negative {
+            color: #ff3b30; /* Red for withdrawals */
+        }
+        
+        .no-records {
+            padding: 30px;
+            text-align: center;
+            color: #aaa;
+            font-style: italic;
+        }
+        
+        /* Summary Section */
+        .summary-section {
+            background-color: #333;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            margin-bottom: 20px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .summary-label {
+            font-size: 16px;
+            color: #e0e0e0;
+        }
+        
+        .summary-value {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        /* Bottom Menu */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            width: 25%;
+        }
+        
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #333;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #87ceeb;
+            font-size: 16px;
+        }
+        
+        .menu-label {
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+        
+        .menu-item.active .menu-icon {
+            background-color: #87ceeb;
+            color: #1e1e1e;
+        }
+        
+        .menu-item.active .menu-label {
+            color: #87ceeb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="back-button" onclick="window.location.href='me.html'">&#x2039;</div>
+        <div class="logo-container">
+            <img src="https://via.placeholder.com/40" alt="Company Logo" class="logo">
+            <div class="company-name" id="company-name">CryptoPro</div>
+        </div>
+        <div class="header-right">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon" id="telegram-icon">
+            <select class="language-selector" id="language-selector">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="ru">Русский</option>
+                <option value="hi">हिन्दी</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Title -->
+        <h1 class="page-title" id="records-title">Transaction Records</h1>
+        
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <button class="filter-button active" id="filter-all">All</button>
+            <button class="filter-button" id="filter-deposit">Deposits</button>
+            <button class="filter-button" id="filter-withdrawal">Withdrawals</button>
+        </div>
+        
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <div class="summary-row">
+                <div class="summary-label" id="total-deposits-label">Total Deposits:</div>
+                <div class="summary-value" id="total-deposits">0.00 USDT</div>
+            </div>
+            <div class="summary-row">
+                <div class="summary-label" id="total-withdrawals-label">Total Withdrawals:</div>
+                <div class="summary-value" id="total-withdrawals">0.00 USDT</div>
+            </div>
+            <div class="summary-row">
+                <div class="summary-label" id="net-flow-label">Net Flow:</div>
+                <div class="summary-value" id="net-flow">0.00 USDT</div>
+            </div>
+        </div>
+        
+        <!-- Records List -->
+        <div class="records-list" id="records-container">
+            <!-- Records will be dynamically inserted here -->
+            <div class="no-records" id="no-records">No transactions found</div>
+        </div>
+    </div>
+
+    <!-- Bottom Menu (Home, Plans, Team, Me) -->
+    <nav class="bottom-menu">
+        <div class="menu-item" onclick="window.location.href='dashboard.html'">
+            <div class="menu-icon">H</div>
+            <div class="menu-label" id="home-label">Home</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='plans.html'">
+            <div class="menu-icon">P</div>
+            <div class="menu-label" id="plans-label">Plans</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='invite.html'">
+            <div class="menu-icon">T</div>
+            <div class="menu-label" id="team-label">Team</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='me.html'">
+            <div class="menu-icon">M</div>
+            <div class="menu-label" id="me-label">Me</div>
+        </div>
+    </nav>
+
+    <script>
+        // Multi-language support
+        const translations = {
+            en: {
+                companyName: "CryptoPro",
+                recordsTitle: "Transaction Records",
+                filterAll: "All",
+                filterDeposit: "Deposits",
+                filterWithdrawal: "Withdrawals",
+                totalDepositsLabel: "Total Deposits:",
+                totalWithdrawalsLabel: "Total Withdrawals:",
+                netFlowLabel: "Net Flow:",
+                depositText: "Deposit",
+                withdrawalText: "Withdrawal",
+                noRecords: "No transactions found",
+                homeLabel: "Home",
+                plansLabel: "Plans",
+                teamLabel: "Team",
+                meLabel: "Me"
+            },
+            es: {
+                companyName: "CryptoPro",
+                recordsTitle: "Registros de Transacciones",
+                filterAll: "Todos",
+                filterDeposit: "Depósitos",
+                filterWithdrawal: "Retiros",
+                totalDepositsLabel: "Depósitos Totales:",
+                totalWithdrawalsLabel: "Retiros Totales:",
+                netFlowLabel: "Flujo Neto:",
+                depositText: "Depósito",
+                withdrawalText: "Retiro",
+                noRecords: "No se encontraron transacciones",
+                homeLabel: "Inicio",
+                plansLabel: "Planes",
+                teamLabel: "Equipo",
+                meLabel: "Yo"
+            },
+            fr: {
+                companyName: "CryptoPro",
+                recordsTitle: "Historique des Transactions",
+                filterAll: "Tous",
+                filterDeposit: "Dépôts",
+                filterWithdrawal: "Retraits",
+                totalDepositsLabel: "Dépôts Totaux:",
+                totalWithdrawalsLabel: "Retraits Totaux:",
+                netFlowLabel: "Flux Net:",
+                depositText: "Dépôt",
+                withdrawalText: "Retrait",
+                noRecords: "Aucune transaction trouvée",
+                homeLabel: "Accueil",
+                plansLabel: "Plans",
+                teamLabel: "Équipe",
+                meLabel: "Moi"
+            },
+            de: {
+                companyName: "CryptoPro",
+                recordsTitle: "Transaktionsverlauf",
+                filterAll: "Alle",
+                filterDeposit: "Einzahlungen",
+                filterWithdrawal: "Auszahlungen",
+                totalDepositsLabel: "Gesamteinzahlungen:",
+                totalWithdrawalsLabel: "Gesamtauszahlungen:",
+                netFlowLabel: "Nettofluss:",
+                depositText: "Einzahlung",
+                withdrawalText: "Auszahlung",
+                noRecords: "Keine Transaktionen gefunden",
+                homeLabel: "Startseite",
+                plansLabel: "Pläne",
+                teamLabel: "Team",
+                meLabel: "Ich"
+            },
+            ru: {
+                companyName: "CryptoPro",
+                recordsTitle: "История Транзакций",
+                filterAll: "Все",
+                filterDeposit: "Пополнения",
+                filterWithdrawal: "Выводы",
+                totalDepositsLabel: "Всего пополнений:",
+                totalWithdrawalsLabel: "Всего выводов:",
+                netFlowLabel: "Чистый поток:",
+                depositText: "Пополнение",
+                withdrawalText: "Вывод",
+                noRecords: "Транзакции не найдены",
+                homeLabel: "Главная",
+                plansLabel: "Планы",
+                teamLabel: "Команда",
+                meLabel: "Я"
+            },
+            hi: {
+                companyName: "CryptoPro",
+                recordsTitle: "लेन-देन रिकॉर्ड",
+                filterAll: "सभी",
+                filterDeposit: "जमा",
+                filterWithdrawal: "निकासी",
+                totalDepositsLabel: "कुल जमा:",
+                totalWithdrawalsLabel: "कुल निकासी:",
+                netFlowLabel: "शुद्ध प्रवाह:",
+                depositText: "जमा",
+                withdrawalText: "निकासी",
+                noRecords: "कोई लेन-देन नहीं मिला",
+                homeLabel: "होम",
+                plansLabel: "योजनाएं",
+                teamLabel: "टीम",
+                meLabel: "मैं"
+            },
+            zh: {
+                companyName: "CryptoPro",
+                recordsTitle: "交易记录",
+                filterAll: "全部",
+                filterDeposit: "存款",
+                filterWithdrawal: "取款",
+                totalDepositsLabel: "总存款:",
+                totalWithdrawalsLabel: "总取款:",
+                netFlowLabel: "净流量:",
+                depositText: "存款",
+                withdrawalText: "取款",
+                noRecords: "未找到交易记录",
+                homeLabel: "首页",
+                plansLabel: "计划",
+                teamLabel: "团队",
+                meLabel: "我的"
+            }
+        };
+
+        let currentLanguage = 'en';
+        let currentFilter = 'all';
+        let transactions = [];
+
+        // Change language function
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const t = translations[lang];
+            
+            // Update all text elements
+            document.getElementById('company-name').textContent = t.companyName;
+            document.getElementById('records-title').textContent = t.recordsTitle;
+            document.getElementById('filter-all').textContent = t.filterAll;
+            document.getElementById('filter-deposit').textContent = t.filterDeposit;
+            document.getElementById('filter-withdrawal').textContent = t.filterWithdrawal;
+            document.getElementById('total-deposits-label').textContent = t.totalDepositsLabel;
+            document.getElementById('total-withdrawals-label').textContent = t.totalWithdrawalsLabel;
+            document.getElementById('net-flow-label').textContent = t.netFlowLabel;
+            document.getElementById('no-records').textContent = t.noRecords;
+            document.getElementById('home-label').textContent = t.homeLabel;
+            document.getElementById('plans-label').textContent = t.plansLabel;
+            document.getElementById('team-label').textContent = t.teamLabel;
+            document.getElementById('me-label').textContent = t.meLabel;
+            
+            document.documentElement.lang = lang;
+        }
+
+        // Load transaction data
+        function loadTransactionData() {
+            const userData = JSON.parse(localStorage.getItem('userDatabase'));
+            const currentUserEmail = localStorage.getItem('currentUser');
+            
+            if (currentUserEmail && userData && userData[currentUserEmail]) {
+                const user = userData[currentUserEmail];
+                transactions = user.transactions || [];
+                
+                // Display transactions
+                displayTransactions();
+                
+                // Calculate and display summary
+                calculateSummary();
+            } else {
+                // If no user is logged in, redirect to login
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Display transactions based on current filter
+        function displayTransactions() {
+            const recordsContainer = document.getElementById('records-container');
+            const noRecords = document.getElementById('no-records');
+            
+            // Clear container
+            recordsContainer.innerHTML = '';
+            
+            // Filter transactions
+            let filteredTransactions = transactions;
+            if (currentFilter === 'deposit') {
+                filteredTransactions = transactions.filter(t => t.type === 'deposit');
+            } else if (currentFilter === 'withdrawal') {
+                filteredTransactions = transactions.filter(t => t.type === 'withdrawal');
+            }
+            
+            // Show no records message if no transactions
+            if (filteredTransactions.length === 0) {
+                noRecords.style.display = 'block';
+                recordsContainer.appendChild(noRecords);
+                return;
+            }
+            
+            // Hide no records message
+            noRecords.style.display = 'none';
+            
+            // Sort transactions by date (newest first)
+            filteredTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Add transactions to container
+            filteredTransactions.forEach(transaction => {
+                const recordItem = document.createElement('div');
+                recordItem.className = 'record-item';
+                
+                const t = translations[currentLanguage];
+                
+                recordItem.innerHTML = `
+                    <div class="record-info">
+                        <div class="record-type">${transaction.type === 'deposit' ? t.depositText : t.withdrawalText}</div>
+                        <div class="record-date">${formatDate(transaction.date)}</div>
+                    </div>
+                    <div class="record-amount ${transaction.type === 'deposit' ? 'amount-positive' : 'amount-negative'}">
+                        ${transaction.type === 'deposit' ? '+' : '-'}${transaction.amount.toFixed(2)} USDT
+                    </div>
+                `;
+                
+                recordsContainer.appendChild(recordItem);
+            });
+        }
+
+        // Format date for display
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString(currentLanguage, {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // Calculate and display summary
+        function calculateSummary() {
+            const deposits = transactions
+                .filter(t => t.type === 'deposit')
+                .reduce((sum, t) => sum + t.amount, 0);
+                
+            const withdrawals = transactions
+                .filter(t => t.type === 'withdrawal')
+                .reduce((sum, t) => sum + t.amount, 0);
+                
+            const netFlow = deposits - withdrawals;
+            
+            document.getElementById('total-deposits').textContent = deposits.toFixed(2) + ' USDT';
+            document.getElementById('total-withdrawals').textContent = withdrawals.toFixed(2) + ' USDT';
+            document.getElementById('net-flow').textContent = netFlow.toFixed(2) + ' USDT';
+            
+            // Color net flow based on value
+            const netFlowElement = document.getElementById('net-flow');
+            if (netFlow > 0) {
+                netFlowElement.className = 'summary-value amount-positive';
+            } else if (netFlow < 0) {
+                netFlowElement.className = 'summary-value amount-negative';
+            } else {
+                netFlowElement.className = 'summary-value';
+            }
+        }
+
+        // Initialize filter buttons
+        function initFilters() {
+            document.getElementById('filter-all').addEventListener('click', function() {
+                setActiveFilter('all');
+            });
+            
+            document.getElementById('filter-deposit').addEventListener('click', function() {
+                setActiveFilter('deposit');
+            });
+            
+            document.getElementById('filter-withdrawal').addEventListener('click', function() {
+                setActiveFilter('withdrawal');
+            });
+        }
+
+        // Set active filter and update display
+        function setActiveFilter(filter) {
+            currentFilter = filter;
+            
+            // Update button states
+            document.querySelectorAll('.filter-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(`filter-${filter}`).classList.add('active');
+            
+            // Update displayed transactions
+            displayTransactions();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load transaction data
+            loadTransactionData();
+            
+            // Initialize filters
+            initFilters();
+            
+            // Telegram icon click handler
+            document.getElementById('telegram-icon').addEventListener('click', function() {
+                window.open('https://t.me/yourcompanychannel', '_blank');
+            });
+            
+            // Language selector change handler
+            document.getElementById('language-selector').addEventListener('change', function() {
+                changeLanguage(this.value);
+            });
+            
+            // Initial setup
+            changeLanguage(currentLanguage);
+        });
+    </script>
+</body>
+</html>

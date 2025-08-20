@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETH Recharge - CryptoPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            padding-bottom: 80px;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .back-button {
+            font-size: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+            color: #87ceeb;
+        }
+        
+        .page-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e0e0e0;
+            flex: 1;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .telegram-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin-right: 15px;
+            filter: invert(88%) sepia(21%) saturate(428%) hue-rotate(162deg) brightness(105%) contrast(89%);
+            transition: transform 0.2s;
+        }
+        
+        .telegram-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .language-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #e0e0e0;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        /* Content Styles */
+        .content {
+            padding: 80px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .qr-container {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+        }
+        
+        .qr-code {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .address-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            word-break: break-all;
+            font-family: monospace;
+        }
+        
+        .copy-button {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            background-color: #87ceeb;
+            color: #1e1e1e;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .copy-button:hover {
+            background-color: #6cb4d8;
+        }
+        
+        .instructions {
+            margin-top: 30px;
+            max-width: 400px;
+            text-align: left;
+            line-height: 1.6;
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        /* Bottom Menu */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            width: 25%;
+        }
+        
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #333;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #87ceeb;
+            font-size: 16px;
+        }
+        
+        .menu-label {
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="back-button" id="back-button">&#x2039;</div>
+        <div class="page-title" id="page-title">ETH Network</div>
+        <div class="header-right">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon" id="telegram-icon">
+            <select class="language-selector" id="language-selector">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="ru">Русский</option>
+                <option value="hi">हिन्दी</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <div class="content">
+        <p id="scan-text">Scan QR code or copy wallet address below</p>
+        
+        <div class="qr-container">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=ETH:0x71C7656EC7ab88b098defB751B7401B5f6d8976F" 
+                 alt="ETH QR Code" class="qr-code">
+        </div>
+        
+        <div class="address-container" id="wallet-address">
+            0x71C7656EC7ab88b098defB751B7401B5f6d8976F
+        </div>
+        
+        <button class="copy-button" id="copy-button">
+            <span id="copy-button-text">Copy Address</span>
+        </button>
+        
+        <div class="instructions">
+            <h4 id="instructions-title">Recharge Instructions:</h4>
+            <p id="instruction-1">1. Send only ETH or ERC20 tokens to this address</p>
+            <p id="instruction-2">2. Minimum deposit: 0.01 ETH</p>
+            <p id="instruction-3">3. Network: Ethereum (ERC20)</p>
+            <p id="instruction-4">4. Do not send from exchange wallets</p>
+            <p id="instruction-5">5. Transactions typically take 5-30 minutes</p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toast-message">Address copied to clipboard!</span>
+    </div>
+
+    <!-- Bottom Menu -->
+    <nav class="bottom-menu">
+        <div class="menu-item" onclick="window.location.href='dashboard.html'">
+            <div class="menu-icon">H</div>
+            <div class="menu-label" id="home-label">Home</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='plans.html'">
+            <div class="menu-icon">P</div>
+            <div class="menu-label" id="plans-label">Plans</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='team.html'">
+            <div class="menu-icon">T</div>
+            <div class="menu-label" id="team-label">Team</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='me.html'">
+            <div class="menu-icon">M</div>
+            <div class="menu-label" id="me-label">Me</div>
+        </div>
+    </nav>
+
+    <script>
+        // Multi-language support
+        const translations = {
+            en: {
+                pageTitle: "ETH Network",
+                scanText: "Scan QR code or copy wallet address below",
+                copyButton: "Copy Address",
+                instructionsTitle: "Recharge Instructions:",
+                instruction1: "1. Send only ETH or ERC20 tokens to this address",
+                instruction2: "2. Minimum deposit: 0.01 ETH",
+                instruction3: "3. Network: Ethereum (ERC20)",
+                instruction4: "4. Do not send from exchange wallets",
+                instruction5: "5. Transactions typically take 5-30 minutes",
+                copiedMessage: "ETH address copied to clipboard!",
+                homeLabel: "Home",
+                plansLabel: "Plans",
+                teamLabel: "Team",
+                meLabel: "Me"
+            },
+            es: {
+                pageTitle: "Red ETH",
+                scanText: "Escanee el código QR o copie la dirección de la billetera a continuación",
+                copyButton: "Copiar Dirección",
+                instructionsTitle: "Instrucciones de Recarga:",
+                instruction1: "1. Envíe solo tokens ETH o ERC20 a esta dirección",
+                instruction2: "2. Depósito mínimo: 0.01 ETH",
+                instruction3: "3. Red: Ethereum (ERC20)",
+                instruction4: "4. No envíe desde billeteras de exchange",
+                instruction5: "5. Las transacciones suelen tardar 5-30 minutos",
+                copiedMessage: "¡Dirección ETH copiada al portapapeles!",
+                homeLabel: "Inicio",
+                plansLabel: "Planes",
+                teamLabel: "Equipo",
+                meLabel: "Yo"
+            },
+            fr: {
+                pageTitle: "Réseau ETH",
+                scanText: "Scannez le code QR ou copiez l'adresse du portefeuille ci-dessous",
+                copyButton: "Copier l'adresse",
+                instructionsTitle: "Instructions de Recharge:",
+                instruction1: "1. Envoyez uniquement des jetons ETH ou ERC20 à cette adresse",
+                instruction2: "2. Dépôt minimum: 0.01 ETH",
+                instruction3: "3. Réseau: Ethereum (ERC20)",
+                instruction4: "4. N'envoyez pas depuis des portefeuilles d'échange",
+                instruction5: "5. Les transactions prennent généralement 5 à 30 minutes",
+                copiedMessage: "Adresse ETH copiée dans le presse-papiers!",
+                homeLabel: "Accueil",
+                plansLabel: "Plans",
+                teamLabel: "Équipe",
+                meLabel: "Moi"
+            },
+            de: {
+                pageTitle: "ETH Netzwerk",
+                scanText: "QR-Code scannen oder Wallet-Adresse unten kopieren",
+                copyButton: "Adresse kopieren",
+                instructionsTitle: "Aufladeanleitung:",
+                instruction1: "1. Senden Sie nur ETH- oder ERC20-Token an diese Adresse",
+                instruction2: "2. Mindesteinzahlung: 0.01 ETH",
+                instruction3: "3. Netzwerk: Ethereum (ERC20)",
+                instruction4: "4. Senden Sie nicht von Exchange-Wallets",
+                instruction5: "5. Transaktionen dauern in der Regel 5-30 Minuten",
+                copiedMessage: "ETH-Adresse in die Zwischenablage kopiert!",
+                homeLabel: "Startseite",
+                plansLabel: "Pläne",
+                teamLabel: "Team",
+                meLabel: "Ich"
+            },
+            ru: {
+                pageTitle: "Сеть ETH",
+                scanText: "Отсканируйте QR-код или скопируйте адрес кошелька ниже",
+                copyButton: "Копировать адрес",
+                instructionsTitle: "Инструкции по пополнению:",
+                instruction1: "1. Отправляйте только токены ETH или ERC20 на этот адрес",
+                instruction2: "2. Минимальный депозит: 0.01 ETH",
+                instruction3: "3. Сеть: Ethereum (ERC20)",
+                instruction4: "4. Не отправляйте с кошельков бирж",
+                instruction5: "5. Транзакции обычно занимают 5-30 минут",
+                copiedMessage: "Адрес ETH скопирован в буфер обмена!",
+                homeLabel: "Главная",
+                plansLabel: "Планы",
+                teamLabel: "Команда",
+                meLabel: "Я"
+            },
+            hi: {
+                pageTitle: "ETH नेटवर्क",
+                scanText: "QR कोड स्कैन करें या नीचे वॉलेट पता कॉपी करें",
+                copyButton: "पता कॉपी करें",
+                instructionsTitle: "रीचार्ज निर्देश:",
+                instruction1: "1. इस पते पर केवल ETH या ERC20 टोकन भेजें",
+                instruction2: "2. न्यूनतम जमा: 0.01 ETH",
+                instruction3: "3. नेटवर्क: Ethereum (ERC20)",
+                instruction4: "4. एक्सचेंज वॉलेट से न भेजें",
+                instruction5: "5. लेन-देन में आमतौर पर 5-30 मिनट लगते हैं",
+                copiedMessage: "ETH पता क्लिपबोर्ड पर कॉपी किया गया!",
+                homeLabel: "होम",
+                plansLabel: "योजनाएं",
+                teamLabel: "टीम",
+                meLabel: "मैं"
+            },
+            zh: {
+                pageTitle: "ETH 网络",
+                scanText: "扫描二维码或复制下面的钱包地址",
+                copyButton: "复制地址",
+                instructionsTitle: "充值说明:",
+                instruction1: "1. 仅向此地址发送 ETH 或 ERC20 代币",
+                instruction2: "2. 最低存款: 0.01 ETH",
+                instruction3: "3. 网络: Ethereum (ERC20)",
+                instruction4: "4. 不要从交易所钱包发送",
+                instruction5: "5. 交易通常需要 5-30 分钟",
+                copiedMessage: "ETH 地址已复制到剪贴板!",
+                homeLabel: "首页",
+                plansLabel: "计划",
+                teamLabel: "团队",
+                meLabel: "我的"
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        // Change language function
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const t = translations[lang];
+            
+            // Update all text elements
+            document.getElementById('page-title').textContent = t.pageTitle;
+            document.getElementById('scan-text').textContent = t.scanText;
+            document.getElementById('copy-button-text').textContent = t.copyButton;
+            document.getElementById('instructions-title').textContent = t.instructionsTitle;
+            document.getElementById('instruction-1').textContent = t.instruction1;
+            document.getElementById('instruction-2').textContent = t.instruction2;
+            document.getElementById('instruction-3').textContent = t.instruction3;
+            document.getElementById('instruction-4').textContent = t.instruction4;
+            document.getElementById('instruction-5').textContent = t.instruction5;
+            document.getElementById('home-label').textContent = t.homeLabel;
+            document.getElementById('plans-label').textContent = t.plansLabel;
+            document.getElementById('team-label').textContent = t.teamLabel;
+            document.getElementById('me-label').textContent = t.meLabel;
+            
+            document.documentElement.lang = lang;
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // Check authentication
+        function checkAuth() {
+            const userDatabase = JSON.parse(localStorage.getItem('userDatabase')) || {};
+            const currentUser = localStorage.getItem('currentUser');
+            
+            if (!currentUser || !userDatabase[currentUser]) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication on page load
+            checkAuth();
+            
+            // Back button functionality
+            document.getElementById('back-button').addEventListener('click', function() {
+                window.location.href = 'recharge.html';
+            });
+
+            // Copy address functionality
+            document.getElementById('copy-button').addEventListener('click', function() {
+                const address = document.getElementById('wallet-address').textContent;
+                navigator.clipboard.writeText(address).then(function() {
+                    showToast(translations[currentLanguage].copiedMessage);
+                }, function() {
+                    alert('Failed to copy address. Please try again.');
+                });
+            });
+
+            // Telegram icon click handler
+            document.getElementById('telegram-icon').addEventListener('click', function() {
+                window.open('https://t.me/yourcompanychannel', '_blank');
+            });
+            
+            // Language selector change handler
+            document.getElementById('language-selector').addEventListener('change', function() {
+                changeLanguage(this.value);
+            });
+            
+            // Initial setup
+            changeLanguage(currentLanguage);
+        });
+    </script>
+</body>
+</html>

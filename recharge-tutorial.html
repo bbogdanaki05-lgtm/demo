@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge Tutorial - CryptoPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            padding-bottom: 80px;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .back-button {
+            font-size: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+            color: #87ceeb;
+        }
+        
+        .page-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+        
+        .language-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #e0e0e0;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        /* Content Styles */
+        .content {
+            padding: 80px 20px 20px;
+        }
+        
+        .tutorial-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tutorial-step {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #444;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #87ceeb;
+            color: #1e1e1e;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #87ceeb;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .step-content {
+            margin-top: 10px;
+            padding-left: 40px;
+            line-height: 1.6;
+        }
+        
+        .step-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 1px solid #555;
+        }
+        
+        /* Bottom Menu */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #333;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #87ceeb;
+        }
+        
+        .menu-label {
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="back-button" id="back-button">&#x2039;</div>
+        <div class="page-title" id="page-title">Recharge Tutorial</div>
+        <select class="language-selector" id="language-selector">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="ru">Русский</option>
+            <option value="hi">हिन्दी</option>
+            <option value="zh">中文</option>
+        </select>
+    </header>
+
+    <!-- Content Section -->
+    <div class="content">
+        <div class="tutorial-container">
+            <div class="tutorial-step">
+                <div class="step-number">1</div>
+                <div class="step-title" id="step1-title">Log in to your CryptoPro account</div>
+                <div class="step-content" id="step1-content">
+                    Open the CryptoPro app or website and log in using your credentials.
+                    <img src="images/login-step.png" alt="Login screenshot" class="step-image">
+                </div>
+            </div>
+            
+            <div class="tutorial-step">
+                <div class="step-number">2</div>
+                <div class="step-title" id="step2-title">Navigate to Recharge section</div>
+                <div class="step-content" id="step2-content">
+                    Click on the "Recharge" button in the main menu or dashboard.
+                    <img src="images/recharge-step.png" alt="Recharge screenshot" class="step-image">
+                </div>
+            </div>
+            
+            <div class="tutorial-step">
+                <div class="step-number">3</div>
+                <div class="step-title" id="step3-title">Select your network</div>
+                <div class="step-content" id="step3-content">
+                    Choose between BEP20, TRC20 or ETH network based on your preference.
+                    <img src="images/network-step.png" alt="Network selection" class="step-image">
+                </div>
+            </div>
+            
+            <div class="tutorial-step">
+                <div class="step-number">4</div>
+                <div class="step-title" id="step4-title">Copy the deposit address</div>
+                <div class="step-content" id="step4-content">
+                    Carefully copy the provided wallet address or scan the QR code.
+                    <img src="images/address-step.png" alt="Address copy" class="step-image">
+                </div>
+            </div>
+            
+            <div class="tutorial-step">
+                <div class="step-number">5</div>
+                <div class="step-title" id="step5-title">Send your funds</div>
+                <div class="step-content" id="step5-content">
+                    From your external wallet, send the amount you wish to deposit to the copied address.
+                    <img src="images/send-step.png" alt="Send funds" class="step-image">
+                </div>
+            </div>
+            
+            <div class="tutorial-step">
+                <div class="step-number">6</div>
+                <div class="step-title" id="step6-title">Wait for confirmation</div>
+                <div class="step-content" id="step6-content">
+                    Your funds will appear in your account after network confirmation (usually within 5-30 minutes).
+                    <img src="images/confirm-step.png" alt="Confirmation" class="step-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Menu -->
+    <nav class="bottom-menu">
+        <div class="menu-item" onclick="window.location.href='dashboard.html'">
+            <div class="menu-icon">H</div>
+            <div class="menu-label" id="home-label">Home</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='plans.html'">
+            <div class="menu-icon">P</div>
+            <div class="menu-label" id="plans-label">Plans</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='invite.html'">
+            <div class="menu-icon">T</div>
+            <div class="menu-label" id="team-label">Team</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='me.html'">
+            <div class="menu-icon">M</div>
+            <div class="menu-label" id="me-label">Me</div>
+        </div>
+    </nav>
+
+    <script>
+        // Multi-language support
+        const translations = {
+            en: {
+                pageTitle: "Recharge Tutorial",
+                step1Title: "Log in to your CryptoPro account",
+                step1Content: "Open the CryptoPro app or website and log in using your credentials.",
+                step2Title: "Navigate to Recharge section",
+                step2Content: "Click on the 'Recharge' button in the main menu or dashboard.",
+                step3Title: "Select your network",
+                step3Content: "Choose between BEP20, TRC20 or ETH network based on your preference.",
+                step4Title: "Copy the deposit address",
+                step4Content: "Carefully copy the provided wallet address or scan the QR code.",
+                step5Title: "Send your funds",
+                step5Content: "From your external wallet, send the amount you wish to deposit to the copied address.",
+                step6Title: "Wait for confirmation",
+                step6Content: "Your funds will appear in your account after network confirmation (usually within 5-30 minutes).",
+                homeLabel: "Home",
+                plansLabel: "Plans",
+                teamLabel: "Team",
+                meLabel: "Me"
+            },
+            es: {
+                pageTitle: "Tutorial de Recarga",
+                step1Title: "Inicia sesión en tu cuenta CryptoPro",
+                step1Content: "Abre la aplicación o sitio web de CryptoPro e inicia sesión con tus credenciales.",
+                step2Title: "Navega a la sección de Recarga",
+                step2Content: "Haz clic en el botón 'Recargar' en el menú principal o panel de control.",
+                step3Title: "Selecciona tu red",
+                step3Content: "Elige entre las redes BEP20, TRC20 o ETH según tu preferencia.",
+                step4Title: "Copia la dirección de depósito",
+                step4Content: "Copia cuidadosamente la dirección de billetera proporcionada o escanea el código QR.",
+                step5Title: "Envía tus fondos",
+                step5Content: "Desde tu billetera externa, envía la cantidad que deseas depositar a la dirección copiada.",
+                step6Title: "Espera la confirmación",
+                step6Content: "Tus fondos aparecerán en tu cuenta después de la confirmación de la red (generalmente dentro de 5-30 minutos).",
+                homeLabel: "Inicio",
+                plansLabel: "Planes",
+                teamLabel: "Equipo",
+                meLabel: "Yo"
+            },
+            fr: {
+                pageTitle: "Tutoriel de Recharge",
+                step1Title: "Connectez-vous à votre compte CryptoPro",
+                step1Content: "Ouvrez l'application ou le site Web CryptoPro et connectez-vous à l'aide de vos identifiants.",
+                step2Title: "Accédez à la section Recharge",
+                step2Content: "Cliquez sur le bouton 'Recharger' dans le menu principal ou le tableau de bord.",
+                step3Title: "Sélectionnez votre réseau",
+                step3Content: "Choisissez entre les réseaux BEP20, TRC20 ou ETH selon votre préférence.",
+                step4Title: "Copiez l'adresse de dépôt",
+                step4Content: "Copiez soigneusement l'adresse du portefeuille fournie ou scannez le code QR.",
+                step5Title: "Envoyez vos fonds",
+                step5Content: "Depuis votre portefeuille externe, envoyez le montant que vous souhaitez déposer à l'adresse copiée.",
+                step6Title: "Attendez la confirmation",
+                step6Content: "Vos fonds apparaîtront sur votre compte après confirmation du réseau (généralement dans les 5 à 30 minutes).",
+                homeLabel: "Accueil",
+                plansLabel: "Plans",
+                teamLabel: "Équipe",
+                meLabel: "Moi"
+            },
+            de: {
+                pageTitle: "Auflade-Anleitung",
+                step1Title: "Melden Sie sich bei Ihrem CryptoPro-Konto an",
+                step1Content: "Öffnen Sie die CryptoPro-App oder Website und melden Sie sich mit Ihren Anmeldedaten an.",
+                step2Title: "Navigieren Sie zum Aufladebereich",
+                step2Content: "Klicken Sie im Hauptmenü oder Dashboard auf die Schaltfläche 'Aufladen'.",
+                step3Title: "Wählen Sie Ihr Netzwerk",
+                step3Content: "Wählen Sie je nach Präferenz zwischen BEP20-, TRC20- oder ETH-Netzwerk.",
+                step4Title: "Kopieren Sie die Einzahlungsadresse",
+                step4Content: "Kopieren Sie die angegebene Wallet-Adresse sorgfältig oder scannen Sie den QR-Code.",
+                step5Title: "Senden Sie Ihre Mittel",
+                step5Content: "Senden Sie den gewünschten Einzahlungsbetrag von Ihrer externen Wallet an die kopierte Adresse.",
+                step6Title: "Warten Sie auf die Bestätigung",
+                step6Content: "Ihre Mittel werden nach der Netzwerkbestätigung auf Ihrem Konto erscheinen (normalerweise innerhalb von 5-30 Minuten).",
+                homeLabel: "Startseite",
+                plansLabel: "Pläne",
+                teamLabel: "Team",
+                meLabel: "Ich"
+            },
+            ru: {
+                pageTitle: "Руководство по пополнению",
+                step1Title: "Войдите в свой аккаунт CryptoPro",
+                step1Content: "Откройте приложение или веб-сайт CryptoPro и войдите, используя свои учетные данные.",
+                step2Title: "Перейдите в раздел пополнения",
+                step2Content: "Нажмите кнопку 'Пополнить' в главном меню или на панели управления.",
+                step3Title: "Выберите сеть",
+                step3Content: "Выберите между сетями BEP20, TRC20 или ETH в зависимости от ваших предпочтений.",
+                step4Title: "Скопируйте адрес для депозита",
+                step4Content: "Аккуратно скопируйте предоставленный адрес кошелька или отсканируйте QR-код.",
+                step5Title: "Отправьте свои средства",
+                step5Content: "Из вашего внешнего кошелька отправьте сумму, которую хотите внести, на скопированный адрес.",
+                step6Title: "Дождитесь подтверждения",
+                step6Content: "Ваши средства появятся на вашем счете после подтверждения сети (обычно в течение 5-30 минут).",
+                homeLabel: "Главная",
+                plansLabel: "Планы",
+                teamLabel: "Команда",
+                meLabel: "Я"
+            },
+            hi: {
+                pageTitle: "रिचार्ज ट्यूटोरियल",
+                step1Title: "अपने CryptoPro खाते में लॉग इन करें",
+                step1Content: "CryptoPro ऐप या वेबसाइट खोलें और अपने क्रेडेंशियल्स का उपयोग करके लॉग इन करें।",
+                step2Title: "रिचार्ज सेक्शन पर नेविगेट करें",
+                step2Content: "मुख्य मेनू या डैशबोर्ड में 'रिचार्ज' बटन पर क्लिक करें।",
+                step3Title: "अपना नेटवर्क चुनें",
+                step3Content: "अपनी प्राथमिकता के आधार पर BEP20, TRC20 या ETH नेटवर्क के बीच चयन करें।",
+                step4Title: "जमा पता कॉपी करें",
+                step4Content: "प्रदान किए गए वॉलेट पते को सावधानी से कॉपी करें या QR कोड स्कैन करें।",
+                step5Title: "अपने फंड भेजें",
+                step5Content: "अपने बाहरी वॉलेट से, कॉपी किए गए पते पर वह राशि भेजें जिसे आप जमा करना चाहते हैं।",
+                step6Title: "पुष्टिकरण की प्रतीक्षा करें",
+                step6Content: "नेटवर्क पुष्टिकरण के बाद आपके फंड आपके खाते में दिखाई देंगे (आमतौर पर 5-30 मिनट के भीतर)।",
+                homeLabel: "होम",
+                plansLabel: "योजनाएं",
+                teamLabel: "टीम",
+                meLabel: "मैं"
+            },
+            zh: {
+                pageTitle: "充值教程",
+                step1Title: "登录您的CryptoPro账户",
+                step1Content: "打开CryptoPro应用或网站，使用您的凭据登录。",
+                step2Title: "导航到充值部分",
+                step2Content: "点击主菜单或仪表板中的“充值”按钮。",
+                step3Title: "选择您的网络",
+                step3Content: "根据您的偏好选择BEP20、TRC20或ETH网络。",
+                step4Title: "复制存款地址",
+                step4Content: "仔细复制提供的钱包地址或扫描二维码。",
+                step5Title: "发送您的资金",
+                step5Content: "从您的外部钱包，将您希望存入的金额发送到复制的地址。",
+                step6Title: "等待确认",
+                step6Content: "您的资金将在网络确认后出现在您的账户中（通常5-30分钟内）。",
+                homeLabel: "首页",
+                plansLabel: "计划",
+                teamLabel: "团队",
+                meLabel: "我的"
+            }
+        };
+
+        // Change language function
+        function changeLanguage(lang) {
+            const t = translations[lang] || translations['en']; // Fallback to English
+            
+            // Update all text elements
+            document.getElementById('page-title').textContent = t.pageTitle;
+            document.getElementById('step1-title').textContent = t.step1Title;
+            document.getElementById('step1-content').innerHTML = t.step1Content + '<img src="images/login-step.png" alt="Login screenshot" class="step-image">';
+            document.getElementById('step2-title').textContent = t.step2Title;
+            document.getElementById('step2-content').innerHTML = t.step2Content + '<img src="images/recharge-step.png" alt="Recharge screenshot" class="step-image">';
+            document.getElementById('step3-title').textContent = t.step3Title;
+            document.getElementById('step3-content').innerHTML = t.step3Content + '<img src="images/network-step.png" alt="Network selection" class="step-image">';
+            document.getElementById('step4-title').textContent = t.step4Title;
+            document.getElementById('step4-content').innerHTML = t.step4Content + '<img src="images/address-step.png" alt="Address copy" class="step-image">';
+            document.getElementById('step5-title').textContent = t.step5Title;
+            document.getElementById('step5-content').innerHTML = t.step5Content + '<img src="images/send-step.png" alt="Send funds" class="step-image">';
+            document.getElementById('step6-title').textContent = t.step6Title;
+            document.getElementById('step6-content').innerHTML = t.step6Content + '<img src="images/confirm-step.png" alt="Confirmation" class="step-image">';
+            document.getElementById('home-label').textContent = t.homeLabel;
+            document.getElementById('plans-label').textContent = t.plansLabel;
+            document.getElementById('team-label').textContent = t.teamLabel;
+            document.getElementById('me-label').textContent = t.meLabel;
+            
+            document.documentElement.lang = lang;
+            
+            // Save language preference to localStorage
+            localStorage.setItem('selectedLanguage', lang);
+            
+            // Update language selector
+            document.getElementById('language-selector').value = lang;
+        }
+
+        // Back button functionality
+        document.getElementById('back-button').addEventListener('click', function() {
+            window.location.href = 'dashboard.html';
+        });
+
+        // Language selector change handler
+        document.getElementById('language-selector').addEventListener('change', function() {
+            changeLanguage(this.value);
+        });
+
+        // Initialize page
+        function initializePage() {
+            // Check authentication
+            const userDatabase = JSON.parse(localStorage.getItem('userDatabase')) || {};
+            const currentUser = localStorage.getItem('currentUser');
+            
+            if (!currentUser || !userDatabase[currentUser]) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // Get saved language or default to English
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            changeLanguage(savedLanguage);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

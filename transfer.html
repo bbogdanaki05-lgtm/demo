@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Funds - CryptoPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            padding-bottom: 80px;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .back-button {
+            font-size: 24px;
+            color: #87ceeb;
+            cursor: pointer;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            filter: brightness(0) invert(0.8);
+        }
+        
+        .company-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .telegram-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin-right: 15px;
+            filter: invert(88%) sepia(21%) saturate(428%) hue-rotate(162deg) brightness(105%) contrast(89%);
+            transition: transform 0.2s;
+        }
+        
+        .telegram-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .language-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #e0e0e0;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
+            padding: 20px;
+        }
+        
+        /* Page Title */
+        .page-title {
+            font-size: 24px;
+            color: #87ceeb;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        /* Transfer Container */
+        .transfer-container {
+            background-color: #333;
+            border-radius: 10px;
+            border: 1px solid #444;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .transfer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #3a3a3a;
+            border-radius: 8px;
+        }
+        
+        .transfer-label {
+            font-size: 16px;
+            color: #e0e0e0;
+        }
+        
+        .transfer-amount {
+            font-size: 18px;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+        
+        .transfer-hint {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 5px;
+            text-align: center;
+        }
+        
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-label {
+            display: block;
+            font-size: 14px;
+            color: #e0e0e0;
+            margin-bottom: 8px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #555;
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+            font-size: 16px;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #87ceeb;
+        }
+        
+        /* Transfer Button */
+        .transfer-button {
+            width: 100%;
+            padding: 16px;
+            background-color: #87ceeb;
+            color: #1e1e1e;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .transfer-button:hover {
+            background-color: #6cb4d8;
+            transform: translateY(-2px);
+        }
+        
+        .transfer-button:disabled {
+            background-color: #555;
+            color: #999;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Message Display */
+        .message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .message.success {
+            background-color: rgba(76, 217, 100, 0.2);
+            color: #4cd964;
+            display: block;
+        }
+        
+        .message.error {
+            background-color: rgba(255, 59, 48, 0.2);
+            color: #ff3b30;
+            display: block;
+        }
+        
+        /* Bottom Menu */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            width: 25%;
+        }
+        
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #333;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #87ceeb;
+            font-size: 16px;
+        }
+        
+        .menu-label {
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+        
+        .menu-item.active .menu-icon {
+            background-color: #87ceeb;
+            color: #1e1e1e;
+        }
+        
+        .menu-item.active .menu-label {
+            color: #87ceeb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="back-button" onclick="window.location.href='me.html'">&#x2039;</div>
+        <div class="logo-container">
+            <img src="https://via.placeholder.com/40" alt="Company Logo" class="logo">
+            <div class="company-name" id="company-name">CryptoPro</div>
+        </div>
+        <div class="header-right">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon" id="telegram-icon">
+            <select class="language-selector" id="language-selector">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="ru">Русский</option>
+                <option value="hi">हिन्दी</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Title -->
+        <h1 class="page-title" id="transfer-title">Transfer Funds</h1>
+        
+        <!-- Transfer Container -->
+        <div class="transfer-container">
+            <div class="transfer-row">
+                <div class="transfer-label" id="withdrawal-label">Withdrawal Amount:</div>
+                <div class="transfer-amount" id="withdrawal-amount">0.00 USDT</div>
+            </div>
+            
+            <div class="transfer-row">
+                <div class="transfer-label" id="assets-label">Active Assets:</div>
+                <div class="transfer-amount" id="assets-amount">0.00 USDT</div>
+            </div>
+            
+            <div class="transfer-hint" id="transfer-hint">
+                Enter the amount you wish to transfer to your active assets
+            </div>
+        </div>
+        
+        <!-- Conversion Quantity -->
+        <div class="input-group">
+            <label class="input-label" id="conversion-label">Conversion Quantity (USDT):</label>
+            <input type="number" class="input-field" id="conversion-input" placeholder="0.00" min="0" step="0.01">
+        </div>
+        
+        <!-- Password Verification -->
+        <div class="input-group">
+            <label class="input-label" id="password-label">Account Password:</label>
+            <input type="password" class="input-field" id="password-input" placeholder="Enter your password">
+        </div>
+        
+        <!-- Transfer Button -->
+        <button class="transfer-button" id="transfer-button">Process Transfer</button>
+        
+        <!-- Message Display -->
+        <div class="message" id="message"></div>
+    </div>
+
+    <!-- Bottom Menu (Home, Plans, Team, Me) -->
+    <nav class="bottom-menu">
+        <div class="menu-item" onclick="window.location.href='dashboard.html'">
+            <div class="menu-icon">H</div>
+            <div class="menu-label" id="home-label">Home</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='plans.html'">
+            <div class="menu-icon">P</div>
+            <div class="menu-label" id="plans-label">Plans</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='invite.html'">
+            <div class="menu-icon">T</div>
+            <div class="menu-label" id="team-label">Team</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='me.html'">
+            <div class="menu-icon">M</div>
+            <div class="menu-label" id="me-label">Me</div>
+        </div>
+    </nav>
+
+    <script>
+        // Multi-language support
+        const translations = {
+            en: {
+                companyName: "CryptoPro",
+                transferTitle: "Transfer Funds",
+                withdrawalLabel: "Withdrawal Amount:",
+                assetsLabel: "Active Assets:",
+                transferHint: "Enter the amount you wish to transfer to your active assets",
+                conversionLabel: "Conversion Quantity (USDT):",
+                passwordLabel: "Account Password:",
+                transferButton: "Process Transfer",
+                passwordPlaceholder: "Enter your password",
+                successMessage: "Transfer successful! Funds have been moved to your active assets.",
+                errorMessage: "Transfer failed. Please check your password and try again.",
+                insufficientFunds: "Insufficient withdrawal funds for this transfer.",
+                homeLabel: "Home",
+                plansLabel: "Plans",
+                teamLabel: "Team",
+                meLabel: "Me"
+            },
+            es: {
+                companyName: "CryptoPro",
+                transferTitle: "Transferir Fondos",
+                withdrawalLabel: "Monto de Retiro:",
+                assetsLabel: "Activos Disponibles:",
+                transferHint: "Ingrese el monto que desea transferir a sus activos disponibles",
+                conversionLabel: "Cantidad de Conversión (USDT):",
+                passwordLabel: "Contraseña de Cuenta:",
+                transferButton: "Procesar Transferencia",
+                passwordPlaceholder: "Ingrese su contraseña",
+                successMessage: "¡Transferencia exitosa! Los fondos se han movido a sus activos disponibles.",
+                errorMessage: "Transferencia fallida. Por favor verifique su contraseña e intente nuevamente.",
+                insufficientFunds: "Fondos de retiro insuficientes para esta transferencia.",
+                homeLabel: "Inicio",
+                plansLabel: "Planes",
+                teamLabel: "Equipo",
+                meLabel: "Yo"
+            },
+            fr: {
+                companyName: "CryptoPro",
+                transferTitle: "Transférer des Fonds",
+                withdrawalLabel: "Montant de Retrait:",
+                assetsLabel: "Actifs Disponibles:",
+                transferHint: "Entrez le montant que vous souhaitez transférer vers vos actifs disponibles",
+                conversionLabel: "Quantité de Conversion (USDT):",
+                passwordLabel: "Mot de Passe du Compte:",
+                transferButton: "Traiter le Transfert",
+                passwordPlaceholder: "Entrez votre mot de passe",
+                successMessage: "Transfert réussi! Les fonds ont été transférés vers vos actifs disponibles.",
+                errorMessage: "Échec du transfert. Veuillez vérifier votre mot de passe et réessayer.",
+                insufficientFunds: "Fonds de retrait insuffisants pour ce transfert.",
+                homeLabel: "Accueil",
+                plansLabel: "Plans",
+                teamLabel: "Équipe",
+                meLabel: "Moi"
+            },
+            de: {
+                companyName: "CryptoPro",
+                transferTitle: "Geld transferieren",
+                withdrawalLabel: "Auszahlungsbetrag:",
+                assetsLabel: "Aktive Vermögenswerte:",
+                transferHint: "Geben Sie den Betrag ein, den Sie auf Ihre aktiven Vermögenswerte übertragen möchten",
+                conversionLabel: "Umrechnungsmenge (USDT):",
+                passwordLabel: "Kontopasswort:",
+                transferButton: "Überweisung durchführen",
+                passwordPlaceholder: "Geben Sie Ihr Passwort ein",
+                successMessage: "Überweisung erfolgreich! Die Mittel wurden auf Ihre aktiven Vermögenswerte übertragen.",
+                errorMessage: "Überweisung fehlgeschlagen. Bitte überprüfen Sie Ihr Passwort und versuchen Sie es erneut.",
+                insufficientFunds: "Unzureichende Abhebungsmittel für diese Überweisung.",
+                homeLabel: "Startseite",
+                plansLabel: "Pläne",
+                teamLabel: "Team",
+                meLabel: "Ich"
+            },
+            ru: {
+                companyName: "CryptoPro",
+                transferTitle: "Перевод Средств",
+                withdrawalLabel: "Сумма вывода:",
+                assetsLabel: "Активные активы:",
+                transferHint: "Введите сумму, которую хотите перевести на свои активные активы",
+                conversionLabel: "Сумма конвертации (USDT):",
+                passwordLabel: "Пароль учетной записи:",
+                transferButton: "Обработать перевод",
+                passwordPlaceholder: "Введите ваш пароль",
+                successMessage: "Перевод успешно выполнен! Средства были перемещены на ваши активные активы.",
+                errorMessage: "Ошибка перевода. Пожалуйста, проверьте пароль и попробуйте снова.",
+                insufficientFunds: "Недостаточно средств для вывода для этого перевода.",
+                homeLabel: "Главная",
+                plansLabel: "Планы",
+                teamLabel: "Команда",
+                meLabel: "Я"
+            },
+            hi: {
+                companyName: "CryptoPro",
+                transferTitle: "फंड ट्रांसफर करें",
+                withdrawalLabel: "निकासी राशि:",
+                assetsLabel: "सक्रिय संपत्ति:",
+                transferHint: "वह राशि दर्ज करें जिसे आप अपनी सक्रिय संपत्ति में स्थानांतरित करना चाहते हैं",
+                conversionLabel: "रूपांतरण मात्रा (USDT):",
+                passwordLabel: "खाता पासवर्ड:",
+                transferButton: "ट्रांसफर प्रोसेस करें",
+                passwordPlaceholder: "अपना पासवर्ड दर्ज करें",
+                successMessage: "ट्रांसफर सफल! फंड आपकी सक्रिय संपत्ति में स्थानांतरित कर दिए गए हैं।",
+                errorMessage: "ट्रांसफर विफल। कृपया अपना पासवर्ड जांचें और पुनः प्रयास करें।",
+                insufficientFunds: "इस ट्रांसफर के लिए अपर्याप्त निकासी फंड।",
+                homeLabel: "होम",
+                plansLabel: "योजनाएं",
+                teamLabel: "टीम",
+                meLabel: "मैं"
+            },
+            zh: {
+                companyName: "CryptoPro",
+                transferTitle: "转账",
+                withdrawalLabel: "提现金额:",
+                assetsLabel: "活跃资产:",
+                transferHint: "输入您希望转移到活跃资产的金额",
+                conversionLabel: "转换数量 (USDT):",
+                passwordLabel: "账户密码:",
+                transferButton: "处理转账",
+                passwordPlaceholder: "输入您的密码",
+                successMessage: "转账成功！资金已转移到您的活跃资产。",
+                errorMessage: "转账失败。请检查您的密码并重试。",
+                insufficientFunds: "提现资金不足，无法完成此转账。",
+                homeLabel: "首页",
+                plansLabel: "计划",
+                teamLabel: "团队",
+                meLabel: "我的"
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        // Change language function
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const t = translations[lang];
+            
+            // Update all text elements
+            document.getElementById('company-name').textContent = t.companyName;
+            document.getElementById('transfer-title').textContent = t.transferTitle;
+            document.getElementById('withdrawal-label').textContent = t.withdrawalLabel;
+            document.getElementById('assets-label').textContent = t.assetsLabel;
+            document.getElementById('transfer-hint').textContent = t.transferHint;
+            document.getElementById('conversion-label').textContent = t.conversionLabel;
+            document.getElementById('password-label').textContent = t.passwordLabel;
+            document.getElementById('transfer-button').textContent = t.transferButton;
+            document.getElementById('password-input').placeholder = t.passwordPlaceholder;
+            document.getElementById('home-label').textContent = t.homeLabel;
+            document.getElementById('plans-label').textContent = t.plansLabel;
+            document.getElementById('team-label').textContent = t.teamLabel;
+            document.getElementById('me-label').textContent = t.meLabel;
+            
+            document.documentElement.lang = lang;
+        }
+
+        // Load user data
+        function loadUserData() {
+            const userData = JSON.parse(localStorage.getItem('userDatabase'));
+            const currentUserEmail = localStorage.getItem('currentUser');
+            
+            if (currentUserEmail && userData && userData[currentUserEmail]) {
+                const user = userData[currentUserEmail];
+                
+                // Calculate withdrawal amount based on your formula
+                // For now, using a placeholder calculation - replace with your actual formula
+                const withdrawalAmount = calculateWithdrawalAmount(user);
+                
+                // Display amounts
+                document.getElementById('withdrawal-amount').textContent = withdrawalAmount.toFixed(2) + ' USDT';
+                document.getElementById('assets-amount').textContent = (user.assets || 0).toFixed(2) + ' USDT';
+                
+                return user;
+            } else {
+                // If no user is logged in, redirect to login
+                window.location.href = 'index.html';
+                return null;
+            }
+        }
+
+        // Placeholder function for withdrawal amount calculation
+        // REPLACE THIS WITH YOUR ACTUAL FORMULA
+        function calculateWithdrawalAmount(user) {
+            // This is a placeholder calculation
+            // You should replace this with your actual formula for calculating withdrawal amount
+            const baseAmount = user.revenue || 0;
+            const planMultiplier = user.plan ? 1.2 : 1; // Example multiplier based on plan
+            return baseAmount * planMultiplier;
+        }
+
+        // Process transfer
+        function processTransfer() {
+            const userData = JSON.parse(localStorage.getItem('userDatabase'));
+            const currentUserEmail = localStorage.getItem('currentUser');
+            const user = userData[currentUserEmail];
+            
+            const conversionInput = document.getElementById('conversion-input');
+            const passwordInput = document.getElementById('password-input');
+            const messageElement = document.getElementById('message');
+            const t = translations[currentLanguage];
+            
+            // Validate inputs
+            const transferAmount = parseFloat(conversionInput.value);
+            const password = passwordInput.value;
+            
+            if (isNaN(transferAmount) || transferAmount <= 0) {
+                messageElement.textContent = "Please enter a valid transfer amount";
+                messageElement.className = "message error";
+                return;
+            }
+            
+            if (!password) {
+                messageElement.textContent = "Please enter your password";
+                messageElement.className = "message error";
+                return;
+            }
+            
+            // Calculate current withdrawal amount
+            const withdrawalAmount = calculateWithdrawalAmount(user);
+            
+            // Check if sufficient funds
+            if (transferAmount > withdrawalAmount) {
+                messageElement.textContent = t.insufficientFunds;
+                messageElement.className = "message error";
+                return;
+            }
+            
+            // Verify password (in a real app, this would be hashed and compared securely)
+            if (password !== user.password) {
+                messageElement.textContent = t.errorMessage;
+                messageElement.className = "message error";
+                return;
+            }
+            
+            // Update user data
+            userData[currentUserEmail].revenue = (user.revenue || 0) - transferAmount;
+            userData[currentUserEmail].assets = (user.assets || 0) + transferAmount;
+            
+            // Add transaction record
+            if (!userData[currentUserEmail].transactions) {
+                userData[currentUserEmail].transactions = [];
+            }
+            
+            userData[currentUserEmail].transactions.push({
+                type: 'transfer',
+                amount: transferAmount,
+                date: new Date().toISOString(),
+                from: 'withdrawal',
+                to: 'assets'
+            });
+            
+            // Save updated data
+            localStorage.setItem('userDatabase', JSON.stringify(userData));
+            
+            // Show success message
+            messageElement.textContent = t.successMessage;
+            messageElement.className = "message success";
+            
+            // Clear inputs
+            conversionInput.value = '';
+            passwordInput.value = '';
+            
+            // Update displayed amounts
+            loadUserData();
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                messageElement.className = "message";
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load user data
+            loadUserData();
+            
+            // Telegram icon click handler
+            document.getElementById('telegram-icon').addEventListener('click', function() {
+                window.open('https://t.me/yourcompanychannel', '_blank');
+            });
+            
+            // Language selector change handler
+            document.getElementById('language-selector').addEventListener('change', function() {
+                changeLanguage(this.value);
+            });
+            
+            // Transfer button click handler
+            document.getElementById('transfer-button').addEventListener('click', processTransfer);
+            
+            // Allow pressing Enter to submit
+            document.getElementById('password-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    processTransfer();
+                }
+            });
+            
+            // Initial setup
+            changeLanguage(currentLanguage);
+        });
+    </script>
+</body>
+</html>
